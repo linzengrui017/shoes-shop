@@ -1,0 +1,139 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>个人中心</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/back_personalCenter.css}"/>
+</head>
+<body>
+	<!--顶部-->
+	<div>
+		<!--导航-->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<!--左边-->
+			<div class="navbar-header">
+				<a id="logo" class="navbar-brand" href="back.html">名履鞋类直营店</a>
+			</div>
+			<!--右边-->
+			<ul  class="nav navbar-right top-nav">
+				<!--下拉菜单-->
+				<li class="dropdown">
+					<a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						&nbsp;&nbsp;
+						<span th:value="${sessionScope.name}"></span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div> 
+	
+	<!--导航：胶囊式标签页-->
+	<div id="left-tab">
+		<div  class="row">
+			<div class="col-md-2" >
+				<ul id="left-nav" class="nav nav-tabs nav-stacked">	
+					<li class="active"><a href="#personalCenter"><center><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;个人中心</center></a></li>
+					
+				</ul>		
+			</div>
+			<div class="col-md-10">
+				<div class="tab-content" style="padding:10px;">
+					<div class="tab-pane fade in active" id="personalCenter">
+						<!--个人中心页面-->
+<!-- 						<div class="page-header">	页头 -->
+<%-- 							<h1>Personal Center&nbsp;&nbsp;<small>Contianing some operation</small></h1> --%>
+<!-- 						</div> -->
+						<div>	<!--面包屑导航-->
+							<ol class="breadcrumb">
+								<li><a href="#">Home</a></li>
+								<li class="active">个人中心</li>
+							</ol>
+						</div>
+						<div id="two-tabs">	<!--标签页-->
+							<ul class="nav nav-tabs">
+							  <li role="presentation" class="active"><a href="#personalMessage">个人信息</a></li>
+							  <li role="presentation"><a href="#modifyPassword">修改密码</a></li>
+							</ul>
+						</div>
+						<div class="tab-content" style="padding:10px;">
+							<div class="tab-pane fade in active" id="personalMessage">
+								<div id="myMessage" class="panel panel-default">
+								  <div class="panel-heading">我的信息</div>
+								  <div class="panel-body">
+								    <p>个性签名：他很懒，什么都没留下。</p>
+								  </div>
+								  <ul class="list-group">
+								    <li class="list-group-item">用户账号：${sessionScope.name}</li>
+								    <li class="list-group-item">密　　码：******</li>
+								    <li class="list-group-item">级　　别：管理员</li>
+								    
+								  </ul>
+								</div>
+							</div>
+							<div class="tab-pane fade " id="modifyPassword">
+								<!-- 窗口声明 -->
+								<div class="modal-dialog">
+									<!-- 内容声明 -->
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title"><strong>密码修改</strong></h4>
+										</div>
+										<div class="modal-body">
+											<div class="container-fluid">
+												<div class="row">
+													<form onsubmit="return submitForm(this)" class= "form-horizontal" action="back_modifyPassword!modifyPassword" method="post" namespace="/">
+														<div class="form-group">
+															<label class="col-md-3 control-label">用户账号</label>
+															<div class="col-md-6">
+																<label><span class="form-control">${sessionScope.name}</span></label>
+																<input type="hidden" name="member.name" class="form-control" value="${sessionScope.name}" />
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-md-3 control-label">新的密码</label>
+															<div class="col-md-6">
+																<input type="password" name="member.pwd" class="form-control" placeholder="请输入新密码"/>
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-md-3 control-label">确认密码</label>
+															<div class="col-md-6">
+																<input type="password" class="form-control" placeholder="请再一次输入您的密码"/>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<input type="submit" class="btn btn-danger" value="修改"/>
+															<button class="btn btn-warning " data-dismiss="modal">取消</button>
+														</div>
+													</form>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div> 
+	</div>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js"}></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js"}></script>
+
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#two-tabs a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>

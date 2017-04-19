@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+/*
+*设置验证码的样式
+*created by linzengrui 2016/05/16
+*/
+
+#code{
+	background-image:url(images/others/code.png);
+	font-family:Arial;
+	font-style:italic;
+	font-weight:bold;
+	border:0;
+	padding: 2px 3px;
+	letter-spacing:3px;
+	color:red;
+}

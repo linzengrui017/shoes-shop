@@ -3,7 +3,7 @@
 ##使用技术
 - 编程语言：Java8
 - 搭建工具：springboot 1.5.2.RELEASE
-- 模板引擎：jsp
+- 模板引擎：thymeleaf
 - 持久层框架：mybatis
 - 数据库：MySQL 5.6.24-win32
 - web容器：tomcat8(springboot内置tomcat)

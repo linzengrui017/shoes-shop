@@ -1,0 +1,82 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>验证码生成</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<!-- <link rel = "stylesheet" href="@{/css/view/index.css}"> -->
+</head>
+<body>
+	<!--<%!-->
+		<!--//获取随机颜色的方法-->
+		<!--Color getColor(int fc, int bc){-->
+			<!--Random random = new Random();-->
+			<!--if(fc > 255)fc = 255;-->
+			<!--if(bc > 255)bc = 255;-->
+			<!--//设置0~255之间的随机颜色值-->
+			<!--int r = fc + random.nextInt(bc-fc);-->
+			<!--int g = fc + random.nextInt(bc-fc);-->
+			<!--int b = fc + random.nextInt(bc-fc);-->
+			<!--return new Color(r,g,b);-->
+		<!--}-->
+	<!--%>-->
+	<!--<%-->
+		<!--//设置页面不缓存-->
+		<!--response.setHeader("Pragma", "No-cahe");-->
+		<!--response.setHeader("Cache-Contorl", "no-cahe");-->
+		<!--response.setDateHeader("Expires", 0);-->
+		<!--//创建一个位于缓存中的图像，宽度为60，高度为20-->
+		<!--int width = 60;-->
+		<!--int height = 20;-->
+		<!--BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);-->
+		<!--//获取用于处理图形上下文的对象，相当于画笔-->
+		<!--Graphics g = image.getGraphics();-->
+		<!--//创建生成随机数的对象-->
+		<!--Random random = new Random();-->
+		<!--//设置图像的背景色-->
+		<!--g.setColor(getColor(200, 250));-->
+		<!--//画一个矩形，坐标为(0,0)，宽度为width=60,高度为height=20-->
+		<!--g.fillRect(0, 0, width, height);-->
+		<!--//设定字体格式-->
+		<!--g.setFont(new Font("Times New Roman", Font.PLAIN, 18));-->
+		<!--//设定颜色-->
+		<!--g.setColor(getColor(160, 200));-->
+		<!--//产生100条随机干扰线-->
+		<!--for(int i = 0; i < 100; i++){-->
+			<!--int x = random.nextInt(width);-->
+			<!--int y = random.nextInt(height);-->
+			<!--int x1 = random.nextInt(12);-->
+			<!--int y1 = random.nextInt(12);-->
+			<!--g.drawLine(x, y, x + x1, y + y1);	//在图像的坐标(x,y)和坐标(x+x1,y+y1)之间画干扰线-->
+		<!--}-->
+		<!--//随机产生4位验证码-->
+		<!--String[] codes = {"2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J",-->
+				<!--"K","L","M","N","P","Q","R","S","T","U","V","W","X","Y","Z"};-->
+		<!--String code = "";-->
+		<!--for(int i = 0; i < 4; i++){-->
+			<!--String str = codes[random.nextInt(codes.length)];-->
+			<!--code += str;-->
+			<!--//将验证码显示到图像中-->
+			<!--g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));-->
+			<!--//调用函数出来的颜色相同，可能是因为种子太接近，所以只能直接生成-->
+			<!--g.drawString(str, 13 * i + 6, 16);-->
+		<!--}-->
+		<!--//将验证码存入session-->
+		<!--session.setAttribute("code", code);-->
+		<!--//图像生效-->
+		<!--g.dispose();-->
+		<!--//输出图像到页面-->
+		<!--ImageIO.write(image, "JPEG", response.getOutputStream());-->
+		<!--//防止异常-->
+		<!--response.getOutputStream().flush();-->
+		<!--response.getOutputStream().close();-->
+		<!--response.flushBuffer();-->
+		<!--out.clear();-->
+		<!--out = pageContext.pushBody();-->
+	<!--%>-->
+	
+
+</body>
+</html>

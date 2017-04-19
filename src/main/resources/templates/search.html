@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>页面顶部</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{/css/view/top.css}">
+</head>
+<body>
+	
+	<!-- LOGO和输入框 -->
+	<nav id="logo" class="navbar navbar-default ">
+		<div class="container">
+			<div class="navbar-header">
+					<!--品牌LOGO -->
+					<div class="navbar-brand">
+						<div class ="logo">
+							<a href="#"><img src="images/banner/logo4.png"/></a>
+						</div>
+					</div>
+					
+			</div>
+			<form action="" class="navbar-form navbar-right">
+				<div class="input-group">
+					<input type="text" class="form-control">
+					<div class="input-group-btn">
+						<button class="btn btn-danger">搜索</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</nav>
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

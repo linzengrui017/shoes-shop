@@ -1,0 +1,227 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>商品详情页面</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{/css/view/shoes1.css}">
+</head>
+<body>
+	
+	<!-- 商品分类和商品详情 -->
+	<div id="type" style="margin-left:200px;">
+		<div class="row">			
+			
+			<!--  商品详情   -->
+				<!-- 面包屑导航 -->
+				<div >
+					<ol class="breadcrumb">
+						<li><a href="index.jsp">首页</a></li>
+						<li><a href="#">产品列表</a></li>
+						<li class="active"><s:property value="#request.shoes.shoesName"/></li>
+					</ol>
+				</div>
+				<!-- 商品图片和主要信息 -->
+				<div >
+					<div class="row">
+						<div class="col-md-6" style="padding: 30px 100px 0px 30px;">
+							<div class="thumbnail" >
+								<a href="#"><img src="<s:property value="#request.shoes.imageURL"/>"/></a>
+							</div>
+						</div>
+						<div class="col-md-6" style="padding: 30px 30px 0px 30px;">
+							<form action="" method="post" namespace="/">
+								<div>
+									<%
+									HttpServletRequest req = ServletActionContext.getRequest();
+									HttpSession httpSession = req.getSession();
+									String name = (String)httpSession.getAttribute("name");
+									%>
+									<input id="name" type="hidden" value="<%= name%>"/>
+									<input id="shoesId" type="hidden" value="<s:property value="#request.shoes.shoesId"/>"/>
+									<p class="text-muted"><h4><span id="shoesName"><s:property value="#request.shoes.shoesName"/></span></h4></p>	
+								</div>
+								<div>
+									<div class="row">
+									<div class="col-md-2" style="margin-right:0px; padding-right:0px;">
+									<h5><p id="color" class="text-muted">颜色：</div>　　
+									<div id="colorName" class="btn-group col-md-6" data-toggle="buttons" style="margin-left:0px; padding-left:0px;">
+										<s:iterator value="#request.colorsList" var="colors">
+										   <label class="btn btn-default">
+										      <input type="radio" name="options1" id="option1" value="<s:property value="#colors.colorName"/>"><s:property value="#colors.colorName"/>
+										   </label>
+										</s:iterator>
+									</div>
+									</p></h5>
+									</div>
+									<div class="row" style="padding-top:10px; ">
+									<div class="col-md-2" style="margin-right:0px; padding-right:0px;" >
+									<h5><p class="text-muted">尺码：</div>　　
+									<div id="sizeNum" class="btn-group col-md-6" data-toggle="buttons" style="margin-left:0px; padding-left:0px;">
+										<s:iterator value="#request.sizesList" var="sizes">
+										   <label class="btn btn-default">
+										      <input type="radio" name="options2" id="option2" value="<s:property value="#sizes.sizeNum"/>"><s:property value="#sizes.sizeNum"/>
+										   </label>
+										</s:iterator>
+									</div>
+									</p></h5>
+									</div>
+									<h5><p class="text-muted">市场价：　　　　<del>￥<s:property value="#request.shoes.price"/></del></p></h5>
+									<%
+										Shoes shoes= (Shoes)request.getAttribute("shoes");
+										float price = shoes.getPrice() * shoes.getDiscount();
+										price = (float)(Math.round(price*100)/100);
+									%>
+									<h5><p class="text-muted">价格　：　　　　<strong><font class="text-danger">￥<%= price %></font></strong></p></h5>
+									
+								</div>
+								<div class="input-group">
+									<input id="addToShoppingCart" type="button" class="btn btn-danger" value="加入购物车"/>
+								</div>		
+							</form>												
+						</div>
+					</div>
+				</div>
+				<!-- 商品具体参数 -->
+				<div>
+					<ul id="nav" class="nav nav-tabs">
+						<li class="active"><a href="#details">产品参数</a></li>
+<!-- 						<li><a href="#evaluation">商品评价</a></li> -->
+					</ul>
+					<div class="tab-content" style="padding:10px;">
+						<div class="tab-pane fade in active" id="details">
+							<div>
+								<h5><p class="text-muted">&nbsp;&nbsp;品牌名称:<a href="#"><s:property value="#request.shoes.brand"/></a></p></h5>
+							</div>
+							<div>
+								<table class="table table-hover">
+									<thead>
+										<th colspan="3"><h5><p class="text-muted">产品参数:</p></h5></th>
+									</thead>
+									<tbody>
+										<tr>
+											<td>货号: <s:property value="#request.shoes.shoesId"/></td>
+											<td>类型: <s:property value="#request.shoes.speciesId"/></td>
+											<td>上架时间: <s:property value="#request.shoes.shelfTime"/></td>
+										</tr>
+										<tr>
+											<td>闭合方式: <s:property value="#request.shoes.closedWay"/></td>
+											<td>图案: <s:property value="#request.shoes.pattern"/></td>
+											<td>风格: <s:property value="#request.shoes.style"/></td>
+										</tr>
+										<tr>
+											<td>流行元素: <s:property value="#request.shoes.fashion"/></td>
+											<td>鞋头款式: <s:property value="#request.shoes.shoesTop"/></td>
+											<td>鞋面款式: <s:property value="#request.shoes.vamp"/></td>
+										</tr>
+										<tr>
+											<td>鞋底款式: <s:property value="#request.shoes.sole"/></td>
+											<td>跟底款式: <s:property value="#request.shoes.heel"/></td>
+											<td>场合: <s:property value="#request.shoes.occasion"/></td>
+										</tr>
+										<tr>
+											<td>适用对象: <s:property value="#request.shoes.targets"/></td>
+											<td>季节: <s:property value="#request.shoes.season"/></td>
+											<td>厂家: <s:property value="#request.shoes.manufacturer"/></td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="evaluation">
+							<p>鞋码有点大，已经选了最小号的没想到还是大了点，可能是我脚太小了吧！质量先不评价，看起来不错，等以后出问题再来追评！
+							顺丰快递速度不用怀疑，速度绝对杠杠的，这次购物总体来说比较满意！</p>
+							<p>鞋子不错，皮子，版型都很好。就是我脚属瘦小型，41码偏大点。不换了麻烦。好评！</p>
+							<p>鞋码有点大，已经选了最小号的没想到还是大了点，可能是我脚太小了吧！质量先不评价，看起来不错，等以后出问题再来追评！
+							顺丰快递速度不用怀疑，速度绝对杠杠的，这次购物总体来说比较满意！</p>
+							<p>鞋子不错，皮子，版型都很好。就是我脚属瘦小型，41码偏大点。不换了麻烦。好评！</p>
+							<p>鞋码有点大，已经选了最小号的没想到还是大了点，可能是我脚太小了吧！质量先不评价，看起来不错，等以后出问题再来追评！
+							顺丰快递速度不用怀疑，速度绝对杠杠的，这次购物总体来说比较满意！</p>
+							<p>鞋子不错，皮子，版型都很好。就是我脚属瘦小型，41码偏大点。不换了麻烦。好评！</p>
+							<p>鞋码有点大，已经选了最小号的没想到还是大了点，可能是我脚太小了吧！质量先不评价，看起来不错，等以后出问题再来追评！
+							顺丰快递速度不用怀疑，速度绝对杠杠的，这次购物总体来说比较满意！</p>
+							<p>鞋子不错，皮子，版型都很好。就是我脚属瘦小型，41码偏大点。不换了麻烦。好评！</p>
+							<p>鞋码有点大，已经选了最小号的没想到还是大了点，可能是我脚太小了吧！质量先不评价，看起来不错，等以后出问题再来追评！
+							顺丰快递速度不用怀疑，速度绝对杠杠的，这次购物总体来说比较满意！</p>
+							<p>鞋子不错，皮子，版型都很好。就是我脚属瘦小型，41码偏大点。不换了麻烦。好评！</p>
+							
+						</div>
+					</div>
+				</div>
+				<!-- 产品展示 -->
+				
+				<!-- 购物保障 -->
+				<div id="sure" class="sure">
+					<ul class="media-list">
+						<li class="meida">
+							<div class="media-left">
+								<img src="images/others/sure1.jpg"/>
+							</div>
+							<div class="media-body">
+								<h3><p ><strong>100%正品保证</strong></p></h3>
+								<p class="text-muted">诚信为本，100%正品，销售的商品均为品牌商直接供货</p>
+								<h5><p class="p1">　　国内最大鞋服类B2C之一以经营优质、名品鞋类为主，以优质、时尚为网站定位， 以用户体验、服务至上为宗旨，依托投资方百丽国际强大的供应链、资金及品牌优势， 经营范围涉及"男鞋、女鞋、运动、户外" 四大品类，涵盖 百丽、天美意、莱尔斯丹、fed、哈森、森达、季候风、OZZO、利郎、耐克、阿迪达斯、 CAT、
+								哥伦比亚等数百个知名品牌，数十万款商品。</p></h5>
+							</div>
+						</li>
+						<li class="meida">
+							<div class="media-left">
+								<img src="images/others/sure2.jpg"/>
+							</div>
+							<div class="media-body">
+								<h3><p ><strong>7天退换货服务</strong></p></h3>
+								<p class="text-muted">　　为您提供7天（自签收之日起）退换货服务，让您购物零风险</p>
+								<img src = "images/others/ticket.png"/>
+							</div>
+						</li>
+						<li class="meida">
+							<div class="media-left">
+								<img src="images/others/sure3.jpg"/>
+							</div>
+							<div class="media-body">
+								<h3><p ><strong>10天调价补差价</strong></p></h3>
+								<p class="text-muted">商品售价因季节等因素发生变化时，将给予顾客10天补差价</p>
+								<h5><p>即：在订单签收起10日内，如订单内商品降价，您可以通过售后热线、在线客服、 客服邮箱等方式申请价保，我们会在接到申请后，
+								将您申请时的价格与您订购商品的价格差以礼品卡的形式 予以返还。</p></h5>
+								<p class="p3">温馨提示：退符合补差价条件的同款商品10天内仅享受一次补差价。</p>
+								<h4>不享受十天补差声明：</h4>
+								<p class="p2">1、换货商品不享受十天补差价；</p>
+								<p class="p2">2、秒杀、团购商品不享受十天补差；</p>
+								<p class="p2">3、差价在5元或以下的不享受十天补差；</p>
+								<p class="p2">4、购买时包含赠品的商品不享受十天补差；</p>
+								<p class="p2">5、有售馨、断码标识、已下架的商品不享受十天补差价；</p>
+								<p class="p2">6、如订单使用优惠券，申请退差后达不到优惠券使用条件的不享受十天补差；</p>
+								<p class="p2">7、涉及全场活动，如：套餐组合、加价换购、满减、多件折等促销活动不享受十天补差；</p>
+								<p class="p2">8、在线支付订单的部分商品补差剩余金额不满99元，按照订单99元免运费条件，需扣除15元运费计算补差。</p>
+								
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>	
+	
+
+	<div style="margin-left:50px;">
+		<!-- 显示底部 -->
+		<div th:include="foot::foot"></div>
+	</div>
+		
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+		
+	<script type="text/javascript" th:src="@{/js/getItem.js}"></script>
+	
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#nav a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+</body>
+</html>

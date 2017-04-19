@@ -16,6 +16,6 @@ public class IndexController {
 
     @RequestMapping("/page")
     public ModelAndView page(){
-        return new ModelAndView("showUsers");
+        return new ModelAndView("index");
     }
 }

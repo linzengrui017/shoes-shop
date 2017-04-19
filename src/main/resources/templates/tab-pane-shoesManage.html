@@ -1,0 +1,691 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>商品管理</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- <link rel = "stylesheet" href="@{/css/view/back.css}"> -->
+<style type="text/css">
+	body {
+		margin-left: 20px;
+	 	position: relative;
+	 	
+	}
+</style>
+</head>
+<body>
+	<!--商品管理页面-->
+<!-- 	<div class="page-header">	页头 -->
+<%-- 		<h1>Shoes Manage&nbsp;&nbsp;<small>Contianing some operation</small></h1> --%>
+<!-- 	</div> -->
+	<div>	<!--面包屑导航-->
+	<ol class="breadcrumb">
+		<li><a href="#">Home</a></li>
+		<li class="active">商品管理</li>
+	</ol>
+	</div>
+	<!--导航条-->
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">商品列表</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<ul class="nav navbar-nav">
+		        <li class="active"><a href="#panel-table-1">鞋子信息表<span class="sr-only">(current)</span></a></li>
+		        <li><a href="#panel-table-1">鞋子详情表</a></li>
+		        <li><a href="#panel-table-2">鞋子颜色对照表</a></li>
+		        <li><a href="#panel-table-3">鞋子尺码对照表</a></li>
+		        <li><a href="#panel-table-4">鞋子类型对照表</a></li>
+		        <li><a href="#panel-table-5">商品库存量对照表</a></li> 
+	      	</ul>
+<!-- 	      	<form class="navbar-form navbar-left" role="search"> -->
+<!-- 	        	<div class="form-group"> -->
+<!-- 	          	<input type="text" class="form-control" placeholder="Search"> -->
+<!-- 	        	</div> -->
+<!-- 	        	<button type="submit" class="btn btn-default">搜索</button> -->
+<!-- 	      	</form> -->
+	      	<ul class="nav navbar-nav navbar-right">
+		      	<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">商品操作 <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li><a href="back_query_shoes_i"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;&nbsp;商品查询</a></li>
+			            <li><a href="back_addShoes.jsp"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;&nbsp;商品上架</a></li>
+<!-- 			            <li role="separator" class="divider"></li> -->
+<%-- 			            <li><a href="#"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp;&nbsp;商品进货</a></li> --%>
+<%-- 			            <li><a href="#"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>&nbsp;&nbsp;商品退货</a></li> --%>
+<!-- 			            <li role="separator" class="divider"></li> -->
+<%-- 			            <li><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;商品下架</a></li> --%>
+			        </ul>
+		        </li>
+	      	</ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="row">
+		<div class="col-md-9">
+			<!--鞋子信息表-->
+			<div id="panel-table-0" class="panel panel-primary">						
+		 		<div id="#shopping-list" class="panel-heading">鞋子信息表</div>
+				<table id="#shopping-table" class="table table-hover">
+					<thead>
+						<tr>
+							<th><center>编号</center></th><th><center>图片</center></th>
+							<th><center>名称</center></th><th><center>单价</center></th>
+							<th><center>折扣</center></th><th><center>品牌</center></th>
+							<th><center>类型</center></th><th><center>上架时间</center></th>
+							<th><center>状态</center></th><th><center>商品操作</center></th>	
+						</tr>
+					</thead>
+					<tbody >
+						
+					</tbody>
+				</table>
+
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 350px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous" id="btn_shoes1_previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#" id="btn_shoes1_1">1</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_2">2</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_3">3</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_4">4</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_5">5</a></li> -->
+<%-- 							<li><a href="#" id="btn_shoes1_next" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<!--鞋子类型对照表-->
+			<div id="panel-table-4" class="panel panel-primary">
+				<div  class="panel-heading">鞋子类型对照表</div>
+				<table  class="table table-hover">
+					<thead>
+						<tr>
+							<th>种类编号</th><th>种类名称</th><th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+<!-- 			<nav> -->
+<!-- 			  <ul class="pager"> -->
+<!-- 			    <li><a href="#">上一页</a></li> -->
+<!-- 			    <li><a href="#">下一页</a></li> -->
+<!-- 			  </ul> -->
+<!-- 			</nav> -->
+		</div>
+
+	</div>
+		
+
+	
+		<!--鞋子详情表-->
+		<div id="panel-table-1-1" class="panel panel-info">
+			<div  class="panel-heading">鞋子详情表</div>
+			<table  class="table table-hover">
+				<thead>
+					<tr>
+						<th><center>编号</center></th>
+						<th><center>闭合方式</center></th><th><center>图案</center></th>
+						<th><center>风格</center></th><th><center>流行元素</center></th>
+						<th><center>鞋头款式</center></th><th><center>鞋面款式</center></th>
+						<th><center>鞋底款式</center></th><th><center>跟底款式</center></th>
+						<th><center>场合</center></th><th><center>适用对象</center></th>
+						<th><center>季节</center></th><th><center>厂家</center></th>
+						<th><center>商品操作</center></th>	
+					</tr>
+				</thead>
+				<tbody >
+					
+				</tbody>					
+			</table>
+			<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 450px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#">1</a></li> -->
+<!-- 							<li><a href="#">2</a></li> -->
+<!-- 							<li><a href="#">3</a></li> -->
+<!-- 							<li><a href="#">4</a></li> -->
+<!-- 							<li><a href="#">5</a></li> -->
+<%-- 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+		</div>
+	<div class="row">
+		<div class="col-md-4">
+			<!--鞋子颜色对照表-->
+			<div id="panel-table-2" class="panel panel-success">
+				<div  class="panel-heading">鞋子颜色对照表</div>
+				<table  class="table table-hover">
+					<thead>
+						<tr>
+							<th>表ID</th><th>鞋子编号</th><th>颜色</th>
+<!-- 							<th>操作</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 100px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#">1</a></li> -->
+<!-- 							<li><a href="#">2</a></li> -->
+<!-- 							<li><a href="#">3</a></li> -->
+<!-- 							<li><a href="#">4</a></li> -->
+<!-- 							<li><a href="#">5</a></li> -->
+<%-- 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+			</div>	
+		</div>
+		<div class="col-md-4">
+			<!--鞋子尺码对照表-->
+			<div id="panel-table-3" class="panel panel-danger">
+				<div  class="panel-heading">鞋子尺码对照表</div>
+				<table  class="table table-hover">
+					<thead>
+						<tr>
+							<th>表ID</th><th>鞋子编号</th><th>尺码</th>
+<!-- 							<th>操作</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 100px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#">1</a></li> -->
+<!-- 							<li><a href="#">2</a></li> -->
+<!-- 							<li><a href="#">3</a></li> -->
+<!-- 							<li><a href="#">4</a></li> -->
+<!-- 							<li><a href="#">5</a></li> -->
+<%-- 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+			</div>	
+		</div>
+		<div class="col-md-4">
+			<!--商品库存量对照表-->
+			<div id="panel-table-5" class="panel panel-warning">
+				<div  class="panel-heading">商品库存量对照表</div>
+				<table  class="table table-hover">
+					<thead>
+						<tr><th>表id</th><th>鞋子编号</th><th>颜色</th><th>尺码</th><th>库存量</th><th>操作</th></tr>
+					</thead>
+					<tbody>
+						
+					</tbody>	
+				</table>
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 100px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#">1</a></li> -->
+<!-- 							<li><a href="#">2</a></li> -->
+<!-- 							<li><a href="#">3</a></li> -->
+<!-- 							<li><a href="#">4</a></li> -->
+<!-- 							<li><a href="#">5</a></li> -->
+<%-- 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+			</div>
+		</div>
+	</div>
+<!-- 	<div class="row"> -->
+<!-- 		<div class="col-md-6"> -->
+			
+		
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+
+	
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$('body').scrollspy({ target: '#bs-example-navbar-collapse-1' });
+
+		$('[data-spy="scroll"]').each(function () {
+		  var $spy = $(this).scrollspy('refresh')
+		});
+	</script>
+	<script type="text/javascript">
+		$("#btn_shoes1_previous").click(function(){
+			
+		});
+		
+		$("#btn_shoes1_1").click(function(){
+			
+		});
+		
+		$("#btn_shoes1_2").click(function(){
+			var pageNo = 2;
+			window.location.href = "";
+		});
+
+		$("#btn_shoes1_3").click(function(){
+			
+		});
+
+		$("#btn_shoes1_4").click(function(){
+			
+		});
+
+		$("#btn_shoes1_5").click(function(){
+			
+		});
+
+		$("#btn_shoes1_next").click(function(){
+			
+		});
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			//显示鞋子信息表
+			$.ajax({
+				url:"back_show_ShoesList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				for(var i in data.shoesList){
+					src+=	'<tr >'+
+					'<td style="width:80px;"><div style="margin:35px 0px 45px 20px;">'+data.shoesList[i].shoesId+'</div></td>'+
+					'<td style="width:190px;margin:0px 0px 0px 10px;">'+
+					'	<img style="width:150px;height:100px;" src="'+data.shoesList[i].imageURL+'"/>'+
+					'</td>'+
+					'<td style="width:160px;">'+
+					'	<div style="margin:35px 0px 45px 0px;">'+data.shoesList[i].shoesName+'<div>'+
+					'</td>'+
+					'<td >'+
+					'	<div style="margin:35px 0px 0px 10px;">'+data.shoesList[i].price+'</div>'+
+					'</td>'+
+					'<td >'+
+					'	<div style="margin:35px 0px 0px 10px;">'+data.shoesList[i].discount+'</div>'+
+					'</td>'+
+					'<td ><div style="margin:35px 0px 45px 40px;">'+data.shoesList[i].brand+'</div></td>'+
+					'<td ><div style="margin:35px 0px 45px 10px;">'+data.shoesList[i].speciesId+'</div></td>'+
+					'<td ><div style="margin:35px 0px 45px 10px;">'+data.shoesList[i].shelfTime+'</div></td>'+
+					'<td ><div style="margin:35px 0px 45px 10px;">'+data.shoesList[i].shoesStatus+'</div></td>'+
+					'<td style="width:100px;">'+
+					'	<div style="margin:35px 0px 45px 20px;">'+
+					'		<a href="#" class="btn_shoes1_edit"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+					'		<a href="#" class="btn_shoes1_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+					'	</div>'+
+					'</td>		'+							
+				'</tr>'
+				}
+				
+				$("#panel-table-0 tbody").html(src);
+				
+				//修改按钮
+				$(".btn_shoes1_edit").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var shoesIdNode = trNode.children().eq(0).children();
+					var shoesId = shoesIdNode.html();
+// 					alert("shoesId="+shoesId);
+					window.location.href="back_updateShoes_i?shoesId="+shoesId;
+				});
+				
+				//删除按钮
+				$(".btn_shoes1_delete").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var shoesIdNode = trNode.children().eq(0).children();
+					var shoesId = shoesIdNode.html();
+// 					alert("shoesId="+shoesId);
+					$.ajax({
+						url:"deleteShoes_i!deleteShoes_i",
+						type:"post",
+						dataType:"json",
+						traditional: true, //
+						data : {"shoesId":shoesId},
+						//设置请求成功时执行的回调函数
+						success:function(){
+							trNode.hide();
+						},
+						//设置请求失败时执行的回调函数
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							 alert(XMLHttpRequest.status);
+							 alert(XMLHttpRequest.readyState);
+							 alert(textStatus);
+						}
+					});
+					
+				});
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+			//显示鞋子详情表
+			$.ajax({
+				url:"back_show_ShoesList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				for(var i in data.shoesList){
+					src+=	'<tr >'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 30px;">'+data.shoesList[i].shoesId+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].closedWay+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].pattern+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].style+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].fashion+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].shoesTop+'</div></td>'+
+						'<td style="width:120px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].vamp+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].sole+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].heel+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].occasion+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].targets+'</div></td>'+
+						'<td style="width:80px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].season+'</div></td>'+
+						'<td style="width:100px;"><div style="margin:0px 0px 0px 20px;">'+data.shoesList[i].manufacturer+'</div></td>'+
+						'<td style="width:100px;">'+
+						'	<div style="margin:0px 0px 0px 20px;">'+
+						'		<a href="#" class="btn_shoes2_edit"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+						'		<a href="#" class="btn_shoes2_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+						'	</div>'+
+						'</td>		'+							
+					'</tr>'
+				}
+				
+				$("#panel-table-1-1 tbody").html(src);
+				
+				//修改按钮
+				$(".btn_shoes2_edit").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var shoesIdNode = trNode.children().eq(0).children();
+					var shoesId = shoesIdNode.html();
+// 					alert("shoesId="+shoesId);
+					window.location.href="back_updateShoes_i?shoesId="+shoesId;
+				});
+				
+				//删除按钮
+				$(".btn_shoes2_delete").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var shoesIdNode = trNode.children().eq(0).children();
+					var shoesId = shoesIdNode.html();
+// 					alert("shoesId="+shoesId);
+					$.ajax({
+						url:"deleteShoes_i!deleteShoes_i",
+						type:"post",
+						dataType:"json",
+						traditional: true, //
+						data : {"shoesId":shoesId},
+						//设置请求成功时执行的回调函数
+						success:function(){
+							trNode.hide();
+						},
+						//设置请求失败时执行的回调函数
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							 alert(XMLHttpRequest.status);
+							 alert(XMLHttpRequest.readyState);
+							 alert(textStatus);
+						}
+					});
+					
+				});
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+			//显示类型表
+			$.ajax({
+				url:"back_show_speciesList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				for(var i in data.speciesList){
+					src+=	'<tr><td>'+data.speciesList[i].speciesId+'</td><td>'+data.speciesList[i].designation+'</td>'+
+							'	<td>'+
+							'		<div>'+
+							'			<a href="#" class="btn_species_edit"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+							'			<a href="#" class="btn_species_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+							'		</div>'+
+							'	</td>'+
+							'</tr>'
+				}
+				
+				$("#panel-table-4 tbody").html(src);
+				
+				//修改按钮
+				$(".btn_species_edit").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var speciesIdNode = trNode.children().eq(0);
+					var speciesId = speciesIdNode.html();
+// 					alert("speciesId="+speciesId);
+					window.location.href="back_updateSpecies_i?speciesId="+speciesId;
+				});
+				
+				//删除按钮
+				$(".btn_species_delete").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var speciesIdNode = trNode.children().eq(0);
+					var speciesId = speciesIdNode.html();
+// 					alert("speciesId="+speciesId);
+					$.ajax({
+						url:"deleteSpecies_i!deleteSpecies_i",
+						type:"post",
+						dataType:"json",
+						traditional: true, //
+						data : {"speciesId":speciesId},
+						//设置请求成功时执行的回调函数
+						success:function(){
+							trNode.hide();
+						},
+						//设置请求失败时执行的回调函数
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							 alert(XMLHttpRequest.status);
+							 alert(XMLHttpRequest.readyState);
+							 alert(textStatus);
+						}
+					});
+					
+				});
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+			//显示颜色表
+			$.ajax({
+				url:"back_show_ColorsList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				for(var i in data.colorsList){
+					src+=	'<tr><td>'+data.colorsList[i].id+'</td><td>'+data.colorsList[i].shoesId+'</td><td>'+data.colorsList[i].colorName+'</td>'+
+// 									'<td>'+
+// 									'<div>'+
+// 									'	<a href="#"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+// 									'	<a href="#"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+// 									'</div>'+
+// 								'</td>'+
+							'</tr>'
+				}
+				
+				$("#panel-table-2 tbody").html(src);
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+			//显示尺码表
+			$.ajax({
+				url:"back_show_SizesList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				for(var i in data.sizesList){
+					src+=	'<tr><td>'+data.sizesList[i].id+'</td><td>'+data.sizesList[i].shoesId+'</td><td>'+data.sizesList[i].sizeNum+'</td>'+
+// 							'	<td>'+
+// 							'		<div>'+
+// 							'			<a href="#"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+// 							'			<a href="#"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+// 							'		</div>'+
+// 							'	</td>'+
+							'</tr>'
+				}
+				
+				$("#panel-table-3 tbody").html(src);
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+			//显示库存量
+			$.ajax({
+				url:"back_show_inventoryList",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : "{}",
+				//设置请求成功时执行的回调函数
+				success:function(data){
+				var src = "";
+				
+				for(var i in data.inventories){
+					
+					src+=	'<tr><td>'+data.inventories[i].id+'</td><td>'+data.inventories[i].shoesId+'</td><td>'+data.inventories[i].colorName+'</td><td>'+data.inventories[i].sizeNum+'</td><td>'+data.inventories[i].inventory+'</td>'+
+							'	<td>'+
+							'		<div>'+
+							'			<a href="#"  class="btn_inventory_edit"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;'+
+							'			<a href="#" class="btn_inventory_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'+
+							'		</div>'+
+							'	</td>'+
+							'</tr>'
+				}
+				
+				$("#panel-table-5 tbody").html(src);
+				
+				//修改按钮
+				$(".btn_inventory_edit").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var idNode = trNode.children().eq(0);
+					var inventoryNode = trNode.children().eq(3);
+					var inventory = inventoryNode.html();
+					var id = idNode.html();
+// 					alert("inventory="+inventory);
+					window.location.href="back_updateInventory_i?id="+id;
+				});
+				
+				//删除按钮
+				$(".btn_inventory_delete").click(function(){
+					var trNode = $(this).parent().parent().parent();
+					var idNode = trNode.children().eq(0);
+					var inventoryNode = trNode.children().eq(4);
+					var id = idNode.html();
+// 					alert("id="+id);
+					$.ajax({
+						url:"deleteInventory!deleteInventory",
+						type:"post",
+						dataType:"json",
+						traditional: true, //
+						data : {"id":id},
+						//设置请求成功时执行的回调函数
+						success:function(){
+							inventoryNode.html("0");
+						},
+						//设置请求失败时执行的回调函数
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							 alert(XMLHttpRequest.status);
+							 alert(XMLHttpRequest.readyState);
+							 alert(textStatus);
+						}
+					});
+					
+				});
+				
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			//
+		});
+	</script>
+	
+</body>
+</html>

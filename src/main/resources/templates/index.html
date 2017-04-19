@@ -1,0 +1,91 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>鞋子购物网站</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/index.css}"/>
+</head>
+<body>
+
+	<!-- 顶部 -->
+	<div th:include="index_top3::index_top3}"></div>
+	
+	<!-- LOGO和输入框 -->
+	<nav id="logo" class="navbar navbar-default ">
+		<div class="container">
+			<div class="navbar-header" style="padding-top:10px;">
+				<a class="navbar-brand" href="#">名履鞋类直营店</a>
+<!-- 				<a href="#" class="navbar-brand"  > -->
+<!-- 					品牌LOGO -->
+<!-- 					<img class ="logo" src="images/banner/logo4.png"/> -->
+<!-- 				</a> -->
+			</div>
+			<form action="" class="navbar-form navbar-right">
+				<div class="input-group">
+					<input id="txt_search" type="text" class="form-control"/>
+					<div class="input-group-btn">
+						<button id="btn_search" type="button" class="btn btn-danger">搜索</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</nav>
+	
+	<!-- 主体 -->
+	<div th:include="index_body::index_body"></div>
+	
+	<!-- 底部 -->
+	<div id="bottom" class="well"  >
+		<div class="container">
+			<div><p style="text-align: center"><img th:src="@{/images/bottom/icon1.png}"/></p></div>
+			<div><p style="text-align: center"><img th:src="@{/images/bottom/icon2.png}"/></p></div>
+			<div>
+				<p style="text-align: center"><a href="#">首页</a>|<a href="#">关于我们</a>|<a href="#">联系我们</a></p>
+				<p style="text-align: center">&copy;2016 xx版权所有</p>
+				<p style="text-align: center">design by lzr</p>
+			</div>	
+		</div>
+			
+	</div>
+
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$("#btn_search").click(function(){
+			var txt_search = $("#txt_search").val();
+			if(txt_search != null || txt_search != "null" || txt_search != ""){
+				window.location.href="index_query_shoes.action?txt_search="+txt_search;	
+			}
+		});
+	</script>
+	<script type="text/javascript">
+		$('#myCarousel').carousel({
+			//设置自动播放/1.5秒
+			interval: 1500,
+		});
+		
+// 		$('#regist').on('click', function(){
+// 			$('#myModal').modal('show');
+// 		});
+		
+		//对登录按钮使用模态框组件
+		$('#login').on('click', function(){
+			$('#myModal').modal('show');
+		});
+		$('#myModal').modal({
+			show : false,
+			backdrop: 'static'
+		});
+// 		$('#myModal').modal({
+// 			show : false,
+// 			remote : 'content.html'
+// 		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>订单页面</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- <link rel = "stylesheet" href="@{/css/view/shoes1.css}"> -->
+</head>
+<body>
+	<!-- LOGO -->	
+	<nav id="logo" class="navbar navbar-default " style=" ">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="success.html"><font color="#000000;">名履鞋类直营店</font></a>
+			</div>
+		</div>
+	</nav>
+	<div style="margin:20px 50px 50px 50px;">
+	<!--订单子项列表-->
+	<table class="table table-bordered table-hover">
+		<caption></caption>
+		<thead>
+			<tr>
+				<th>订单号</th>
+				<th style="padding:0px 0px 8px 90px;">图片</th>
+				<th style="padding:0px 0px 8px 90px;">名称</th>
+				<th>颜色</th>
+				<th>尺码</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>商品总价</th>
+<!-- 				<th>收货信息</th> -->
+				<th>订单状态</th>
+				<th>收货状态</th>
+				<th>订单操作</th>	
+			</tr>
+		</thead>
+		<tbody>
+			<div th:each="ordersViewObject : ${OrdersList}">
+				<tr>
+					<td style="padding:55px 0px 45px 30px;"><span th:text="${ordersViewObject.orderItemId}"></span></td>
+					<td ><img style="width:150px; height:100px;" src="${ordersViewObject.imageURL}"/>" /></td>
+					<td style="padding:55px 0px 45px 10px;"><span th:text="ordersViewObject.shoesName"></span></td>
+					<td style="padding:55px 0px 45px 0px;"><span th:text="ordersViewObject.color"></span></td>
+					<td style="padding:55px 0px 45px 0px;"><span th:text="ordersViewObject.size"></span></td>
+					<td id="price" style="padding:55px 0px 45px 0px;"><span th:text="ordersViewObject.price"></span></td>
+					<td style="padding:55px 0px 45px 0px;"><span th:text="ordersViewObject.nums"></span></td>
+					<td style="padding:55px 0px 45px 0px;" id="total" name="total"><span th:text="ordersViewObject.total"></span></td>
+<%-- 					<td style="padding:55px 0px 45px 0px;" ><span th:text="ordersViewObject.addr"></span></td> --%>
+					<td style="padding:55px 0px 45px 0px;" ><span th:text="ordersViewObject.orderStatus"></span></td>
+					<td style="padding:55px 0px 45px 0px;" ><span th:text="ordersViewObject.receiveStatus"></span></td>
+					<td style="padding:55px 0px 45px 10px;"><button name="btn_check" class="btn btn-primary">确认收货</button></td>
+				</tr>
+			</div>
+			
+		</tbody>
+	</table>
+	</div>
+	
+	<!-- 显示底部 -->
+	<div th:include="foot:: foot"></div>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$("button[name='btn_check']").click(function(){
+			var trNode = $(this).parent().parent();
+			var idNode = trNode.children().eq(0);
+			var orderItemId = idNode.html();
+// 			alert("orderItemId"+orderItemId);
+			var receiveStatus = trNode.children().eq(9);
+			var btn = trNode.children().eq(10);
+			$.ajax({
+				url:"checkOrders!checkOrders",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : {"orderItemId":orderItemId},
+				//设置请求成功时执行的回调函数
+				success:function(){
+// 					window.location.href = "tab-pane-ordersManage.jsp";
+					receiveStatus.html("已收货");
+					btn.html("");
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

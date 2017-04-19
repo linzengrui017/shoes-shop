@@ -1,0 +1,30 @@
+男鞋man开头
+女鞋woman开头
+
+
+
+
+种类：
+(男)
+1皮鞋leather shoes
+2帆布鞋canvas shoes
+3运动鞋sneaker
+4板鞋sandals
+5休闲鞋Casual shoes
+6布鞋Cloth shoes 
+7凉鞋 foothold
+
+
+（女）
+7凉鞋foothold
+8单鞋Nude shoes
+2帆布鞋canvas shoes
+3运动鞋sneaker
+4板鞋sandals
+9高跟鞋high heels
+10人字拖flip-flops
+5休闲鞋Casual shoes
+
+
+名牌：
+耐卡

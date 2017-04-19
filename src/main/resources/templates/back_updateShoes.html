@@ -1,0 +1,196 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>修改商品</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- <link rel = "stylesheet" href="@{/css/view/back_personalCenter.css}"> -->
+</head>
+<body>
+	<div>	<!--面包屑导航-->
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="tab-pane-shoesManage.html">商品管理</a></li>
+			<li class="active">修改商品</li>
+		</ol>
+	</div>
+	<div class="panel panel-primary" style="width: 800px; margin: 30px 200px 50px 200px;" >
+	   <div class="panel-heading">修改商品</div>
+	   <div class="panel-body">
+	    	<form class="form-horizontal" role="form" action="" >
+	    	<s:iterator value="shoesList" var="shoes">
+				<div class="form-group">
+					<input type="hidden" class="form-control" id="shoesId" th:value="${shoes.shoesId}" name="shoes.shoesId" >
+					<label for="shoesName" class="col-sm-2 control-label">名称</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="shoesName" th:value="${shoes.shoesName}" name="shoes.shoesName" placeholder="示例:青年英伦系带商务皮鞋男士正装皮鞋">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="price" class="col-sm-2 control-label">单价</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="price" th:value="${shoes.price}" name="shoes.price" placeholder="示例:888.00">
+					</div>
+					<label for="discount" class="col-sm-2 control-label">折扣</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="discount" th:value="${shoes.discount}" name="shoes.discount" placeholder="示例:0.6">
+					</div>
+				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="colorName" class="col-sm-2 control-label">颜色</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<%-- 						<input type="text" class="form-control" id="colorName" th:value="${shoes.colorName}" name="shoes.colorName" placeholder="示例:黑色"> --%>
+<!-- 					</div> -->
+<!-- 					<label for="sizesNum" class="col-sm-2 control-label">尺码</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<%-- 						<input type="text" class="form-control" id="sizesNum" th:value="${shoes.sizesNum}" name="shoes.sizesNum" placeholder="示例：42"> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
+				<div class="form-group">
+					<label for="brand" class="col-sm-2 control-label">品牌</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="brand" th:value="${shoes.brand}" name="shoes.brand" placeholder="示例:卡西狼">
+					</div>
+					<label for="speciesId" class="col-sm-2 control-label">类型</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="speciesId" th:value="${shoes.speciesId}" name="shoes.speciesId" placeholder="示例：皮鞋">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="closedWay" class="col-sm-2 control-label">闭合方式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="closedWay" th:value="${shoes.closedWay}" name="shoes.closedWay" placeholder="示例:系带">
+					</div>
+					<label for="pattern" class="col-sm-2 control-label">图案</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="pattern" th:value="${shoes.pattern}" name="shoes.pattern" placeholder="示例：纯色">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="style" class="col-sm-2 control-label">风格</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="style" th:value="${shoes.style}" name="shoes.style" placeholder="示例:休闲">
+					</div>
+					<label for="fashion" class="col-sm-2 control-label">流行元素</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="fashion" th:value="${shoes.fashion}" name="shoes.fashion" placeholder="示例：车缝线">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="shoesTop" class="col-sm-2 control-label">鞋头款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="shoesTop" th:value="${shoes.shoesTop}" name="shoes.shoesTop" placeholder="示例:圆头">
+					</div>
+					<label for="vamp" class="col-sm-2 control-label">鞋面款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="vamp" th:value="${shoes.vamp}" name="shoes.vamp" placeholder="示例：头层牛皮">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sole" class="col-sm-2 control-label">鞋底款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="sole" th:value="${shoes.sole}" name="shoes.sole" placeholder="示例:橡胶">
+					</div>
+					<label for="heel" class="col-sm-2 control-label">跟底款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="heel" th:value="${shoes.heel}" name="shoes.heel" placeholder="示例：平底">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="occasion" class="col-sm-2 control-label">场合</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="occasion" th:value="${shoes.occasion}" name="shoes.occasion" placeholder="示例:办公室">
+					</div>
+					<label for="targets" class="col-sm-2 control-label">适用对象</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="targets" th:value="${shoes.targets}" name="shoes.targets" placeholder="示例：男士">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="season" class="col-sm-2 control-label">季节</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="season" th:value="${shoes.season}" name="shoes.season" placeholder="示例:春秋">
+					</div>
+					<label for="manufacturer" class="col-sm-2 control-label">厂家</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="manufacturer" th:value="${shoes.manufacturer}" name="shoes.manufacturer" placeholder="示例：上海鞋厂">
+					</div>
+				</div>
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="inventory" class="col-sm-2 control-label">数量</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<%-- 						<input type="text" class="form-control" id="inventory" th:value="${shoes.inventory}" name="shoes.inventory" placeholder="示例:20"> --%>
+<!-- 					</div> -->
+<!-- 					<label for="inputfile" class="col-sm-2 control-label">上传图片</label> -->
+<!-- 					<div class="col-sm-4"> -->
+<!-- 						<input type="file"  id="inputfile">	 -->
+<!-- 					</div> -->
+	      				
+<!-- 				</div> -->
+				
+				<div class="form-group">
+					<label for="descripition" class="col-sm-2 control-label">鞋子描述</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="descripition" th:value="${shoes.descripition}" name="shoes.descripition" placeholder="示例:宾度男鞋春夏季圆头青年英伦系带商务皮鞋男士正装皮鞋子牛皮婚鞋">
+					</div>
+				</div>
+				<div class="form-group" style="margin-top:50px;">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-1">
+						<button type="button" id="btn_update" class="btn btn-danger">修改</button>
+					</div>
+<!-- 					<div class="col-sm-2"> -->
+<!-- 						<button  class="btn btn-warning">取消</button> -->
+<!-- 					</div> -->
+				</div>
+			</s:iterator>
+			</form>
+	   </div>
+	</div> 
+	
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$("#btn_update").click(function(){
+			var shoesId = $("#shoesId").val();
+			var shoesName = $("#shoesName").val();
+			var price = $("#price").val();
+			var discount = $("#discount").val();
+			var brand = $("#brand").val();
+			var speciesId = $("#speciesId").val();
+			var closedWay = $("#closedWay").val();
+			var pattern = $("#pattern").val();
+			var style = $("#style").val();
+			var fashion = $("#fashion").val();
+			var shoesTop = $("#shoesTop").val();
+			var vamp = $("#vamp").val();
+			var sole = $("#sole").val();
+			var heel = $("#heel").val();
+			var occasion = $("#occasion").val();
+			var targets = $("#targets").val();
+			var season = $("#season").val();
+			var manufacturer = $("#manufacturer").val();
+			var descripition = $("#descripition").val();
+			var str = shoesId + "," + shoesName + "," + price + "," + discount + "," + brand 
+				+ "," + speciesId + "," + closedWay + "," + pattern + "," + style + "," + fashion 
+				+ "," + shoesTop + "," + vamp + "," + sole + "," + heel + "," + occasion 
+				+ "," + targets + "," +season + "," + manufacturer + "," + descripition ;
+// 			alert("str="+str);
+			
+			window.location.href="back_updateShoes_j?str="+str;
+		});
+	</script>
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#two-tabs a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>

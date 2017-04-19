@@ -1,0 +1,157 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>用户管理</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{/css/view/back.css}">
+</head>
+<body>
+	<!--用户管理-->
+<!-- 	<div class="page-header">	页头 -->
+<%-- 		<h1>User Manage&nbsp;&nbsp;<small>Contianing some operation</small></h1> --%>
+<!-- 	</div> -->
+	<div>	<!--面包屑导航-->
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li class="active">用户管理</li>
+		</ol>
+	</div>
+	
+	<!--导航条-->
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">用户列表</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<ul class="nav navbar-nav">
+		        <li class="active"><a href="#panel-table-1">用户表<span class="sr-only">(current)</span></a></li>
+		        
+	      	</ul>
+	      	<form class="navbar-form navbar-left" role="search">
+	        	<div class="form-group">
+	          	<input id="search_txt" type="text" class="form-control" placeholder="Search">
+	        	</div>
+	        	<select id="occ" class="form-control">
+	        		<option value="用户编号">用户编号</option>
+	        		<option value="用户名">用户名</option>
+	        		<option value="用户类别">用户类别</option>
+	        	</select>
+	        	<button id="search_user" type="button" class="btn btn-default">搜索</button>
+	      	</form>
+	      	<ul class="nav navbar-nav navbar-right">
+		      	<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;&nbsp;用户查询</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;删除用户</a></li>
+			        </ul>
+		        </li>
+	      	</ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+			
+			<div id="panel-table-0" class="panel panel-primary" style="width:500px;margin: 30px 30px 30px 200px;">						
+		 		<div id="#shopping-list" class="panel-heading">用户表</div>
+				<table id="#shopping-table" class="table table-hover">
+					<thead>
+						<tr>
+							<th><center>用户编号</center></th><th><center>用户名</center></th>
+							<th><center>用户类别</center></th><th><center>用户管理</center></th>	
+						</tr>
+					</thead>
+					<tbody >
+					<s:iterator value="usersList" var="member">
+						<tr >
+							<td style="width:80px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#member.userId"/></div></td>
+							<td style="width:80px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#member.name"/></div></td>
+							<td style="width:150px;"><div style="margin:0px 0px 0px 50px;"><s:property value="#member.userType"/></div></td>
+							<td style="width:100px;">
+								<div style="margin:0px 0px 0px 20px;">
+									<a href="#" class="btn_user_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+								</div>
+							</td>									
+						</tr>
+					</s:iterator>
+					</tbody>
+				</table>
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 150px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#">1</a></li> -->
+<!-- 							<li><a href="#">2</a></li> -->
+<!-- 							<li><a href="#">3</a></li> -->
+<!-- 							<li><a href="#">4</a></li> -->
+<!-- 							<li><a href="#">5</a></li> -->
+<%-- 							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+			</div>
+	
+
+<!-- 	<nav> -->
+<!--   		<ul class="pager"> -->
+<!-- 			<li><a href="#">上一页</a></li> -->
+<!-- 			<li><a href="#">下一页</a></li> -->
+<!-- 		</ul> -->
+<!-- 	</nav> -->
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+	$("#search_user").click(function(){
+		var search_txt = $("#search_txt").val();
+		var occ = $("#occ").val();
+		var idName = "";
+		if(occ == "用户编号"){
+			idName = "userId";
+		}else if(occ == "用户名"){
+			idName = "name";
+		}else if(occ == "用户类别"){
+			idName = "userType";
+		}
+		
+		var sql = "";
+		if(search_txt == "" || search_txt == null || search_txt == "null"){
+			sql = "select * from Member where userType = '普通会员'";
+		}else if(occ == "用户编号"){
+			sql = "select * from Member where userType = '普通会员' and "+ idName + " = " + search_txt;
+		}else if(occ == "用户名"){
+			sql = "select * from Member where userType = '普通会员' and "+ idName + " = '" + search_txt +"'";
+		}else if(occ == "用户类别"){
+			sql = "select * from Member where "+ idName + " = '" + search_txt +"'";
+		}
+// 		alert("sql="+sql);
+		window.location.href="back_query_user?sql="+sql;
+	});
+	</script>
+	<script type="text/javascript">
+		$(".btn_user_delete").click(function(){
+			var trNode = $(this).parent().parent().parent();
+			var idNode = trNode.children().eq(0).children();
+			var userId = idNode.html();
+			window.location.href="back_delete_user?userId="+userId;
+// 			trNode.hide();
+		});
+	</script>
+	
+</body>
+</html>

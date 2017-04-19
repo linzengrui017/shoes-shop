@@ -1,0 +1,214 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>商品上架</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<!-- <link rel = "stylesheet" href="@{/css/view/back_personalCenter.css}"> -->
+</head>
+<body>
+	<div>	<!--面包屑导航-->
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="tab-pane-shoesManage.html">商品管理</a></li>
+			<li class="active">商品上架</li>
+		</ol>
+	</div>
+	<div class="panel panel-primary" style="width: 800px; margin: 30px 200px 50px 200px;" >
+	   <div class="panel-heading">商品上架</div>
+	   <div class="panel-body">
+	    	<form class="form-horizontal" role="form" action="" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="shoesName" class="col-sm-2 control-label">名称</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="shoesName" name="" placeholder="示例:青年英伦系带商务皮鞋男士正装皮鞋">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="price" class="col-sm-2 control-label">单价</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="price" name="" placeholder="示例:888.00">
+					</div>
+					<label for="discount" class="col-sm-2 control-label">折扣</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="discount" name="" placeholder="示例:0.6">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="colorName" class="col-sm-2 control-label">颜色</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="colorName" name="" placeholder="示例:黑色">
+					</div>
+					<label for="sizesNum" class="col-sm-2 control-label">尺码</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="sizesNum" name="" placeholder="示例：42">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="brand" class="col-sm-2 control-label">品牌</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="brand" name="" placeholder="示例:卡西狼">
+					</div>
+					<label for="speciesName" class="col-sm-2 control-label">类型</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="speciesName" name="" placeholder="示例：皮鞋">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="closedWay" class="col-sm-2 control-label">闭合方式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="closedWay" name="" placeholder="示例:系带">
+					</div>
+					<label for="pattern" class="col-sm-2 control-label">图案</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="pattern" name="" placeholder="示例：纯色">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="style" class="col-sm-2 control-label">风格</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="style" name="" placeholder="示例:休闲">
+					</div>
+					<label for="fashion" class="col-sm-2 control-label">流行元素</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="fashion" name="" placeholder="示例：车缝线">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="shoesTop" class="col-sm-2 control-label">鞋头款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="shoesTop" name="" placeholder="示例:圆头">
+					</div>
+					<label for="vamp" class="col-sm-2 control-label">鞋面款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="vamp" name="" placeholder="示例：头层牛皮">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sole" class="col-sm-2 control-label">鞋底款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="sole" name="" placeholder="示例:橡胶">
+					</div>
+					<label for="heel" class="col-sm-2 control-label">跟底款式</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="heel" name="" placeholder="示例：平底">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="occasion" class="col-sm-2 control-label">场合</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="occasion" name="" placeholder="示例:办公室">
+					</div>
+					<label for="targets" class="col-sm-2 control-label">适用对象</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="targets" name="" placeholder="示例：男士">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="season" class="col-sm-2 control-label">季节</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="season" name="" placeholder="示例:春秋">
+					</div>
+					<label for="manufacturer" class="col-sm-2 control-label">厂家</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="manufacturer" name="" placeholder="示例：上海鞋厂">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inventory" class="col-sm-2 control-label">数量</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="inventory" name="" placeholder="示例:20">
+					</div>
+					<label id="btn_upload" for="inputfile" class="col-sm-2 control-label">上传图片</label>
+					<div class="col-sm-4">
+						<input type="file" id="inputfile" name="file">	
+					</div>
+	      				
+				</div>
+				
+				<div class="form-group">
+					<label for="descripition" class="col-sm-2 control-label">鞋子描述</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="descripition" name="" placeholder="示例:宾度男鞋春夏季圆头青年英伦系带商务皮鞋男士正装皮鞋子牛皮婚鞋">
+					</div>
+				</div>
+				<div class="form-group" style="margin-top:50px;">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-1">
+						<button id="btn_add" type="button" class="btn btn-danger">提交</button>
+					</div>
+					<div class="col-sm-2">
+						<button  class="btn btn-warning">取消</button>
+					</div>
+				</div>
+				
+			</form>
+	   </div>
+	</div> 
+	
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+	</script>
+	<script type="text/javascript">
+		$("#btn_add").click(function(){
+			var speciesName = $("#speciesName").val();
+			var shoesName = $("#shoesName").val();
+			var price = $("#price").val();
+			var discount = $("#discount").val();
+			var brand = $("#brand").val();
+			var closedWay = $("#closedWay").val();
+			var pattern = $("#pattern").val();
+			var style  = $("#style").val();
+			var fashion = $("#fashion").val();
+			var shoesTop = $("#shoesTop").val();
+			var vamp = $("#vamp").val();
+			var sole = $("#sole").val();
+			var heel = $("#heel").val();
+			var occasion = $("#occasion").val();
+			var targets = $("#targets").val();
+			var season = $("#season").val();
+			var manufacturer = $("#manufacturer").val();
+			var descripition = $("#descripition").val();
+			var colorName = $("#colorName").val();
+			var sizesNum = $("#sizesNum").val();
+			var inventory = $("#inventory").val();
+			
+			var str = "";
+			str = speciesName+","+shoesName+","+price+","+discount+","+brand+","+closedWay+","+
+					pattern+","+style+","+ fashion+","+ shoesTop+","+ vamp+","+ sole+","+ heel+","+ 
+					occasion+","+ targets+","+ season+","+ manufacturer+","+ descripition+","+
+					colorName+","+ sizesNum + "," + inventory; 
+			
+			var fobj = $("#inputfile").val();
+			fobj = "images/shoes/"+fobj;
+			
+			$.ajax({
+				url:"back_add_shoes!back_add_shoes?fobj="+fobj,
+				type:"post",
+				dataType:"json",
+				traditional: true,
+				data :{"str":str},
+			//设置请求成功时执行的回调函数
+				success:function(){
+					alert("添加成功！");
+					window.location.href = "tab-pane-shoesManage.jsp";
+					return true;
+				}
+			});
+			
+		});
+	</script>
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#two-tabs a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>页面底部</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<!-- <link rel = "stylesheet" href="@{/css/view/index.css}"> -->
+</head>
+<body th:fragment="foot">
+	<!-- 底部 -->
+	
+		<div class="container" >
+			<div><p style="text-align: center"><img th:src="@{/images/bottom/icon1.png}"/></p></div>
+			<div><p style="text-align: center"><img th:src="@{/static/images/bottom/icon2.png}"/></p></div>
+			<div>
+				<p style="text-align: center"><a href="#">首页</a>|<a href="#">关于我们</a>|<a href="#">联系我们</a></p>
+				<p style="text-align: center">&copy;2016 xx版权所有</p>
+				<p style="text-align: center">design by lzr</p>
+			</div>	
+		</div>
+			
+
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

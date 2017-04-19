@@ -1,0 +1,181 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>收货地址</title>
+<link rel = "stylesheet" th:href="@{css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{css/view/index.css}"/>
+</head>
+<body>
+	<div class="modal-dialog">
+		<!-- 内容声明 -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><strong>收货地址</strong></h4>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+					<div class="row">
+						<form class= "form-horizontal" action="" method="post">
+							
+							<div class="form-group">
+								<label class="col-md-3 control-label"><font size="4" color="red">*</font>收件人：</label>
+								<div class="col-md-6">
+									<input id="name" type="text" name="" class="form-control" placeholder="收货人姓名"/>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-3 control-label"><font size="4" color="red">*</font>联系方式：</label>
+								<div class="col-md-6">
+									<input id="tel" type="text" name="" class="form-control" placeholder="手机号"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label"><font size="4" color="red">*</font>省及直辖市：</label>
+								<div class="col-md-6">
+									<select id="province" name="province" class="form-control" style="width:100px;">
+										<option value="广东省">广东省</option>
+										<option value="福建省">福建省</option>
+										<option value="广西省">广西省</option>
+										<option value="北京市">北京市</option>
+										<option value="上海市">上海市</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label" ><font size="4" color="red">*</font>地级市：</label>
+								<div class="col-md-6">
+									<select id="city" name="city" class="form-control" style="width:100px;">
+										<option value="广州市">广州市</option>
+										<option value="深圳市">深圳市</option>
+										<option value="珠海市">珠海市</option>
+										<option value="汕头市">汕头市</option>
+										<option value="汕尾市">汕尾市</option>	
+										<option value="揭阳市">揭阳市</option>	
+										<option value="潮州市">潮州市</option>	
+										<option value="中山市">中山市</option>	
+										<option value="韶关市">韶关市</option>	
+										<option value="东莞市">东莞市</option>	
+										<option value="惠州市">惠州市</option>	
+										<option value="梅州市">梅州市</option>
+										<option value="江门市">江门市</option>	
+										<option value="湛江市">湛江市</option>	
+										<option value="茂名市">茂名市</option>	
+										<option value="清远市">清远市</option>
+										<option value="肇庆市">肇庆市</option>
+										<option value="河源市">河源市</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-3 control-label"><font size="4" color="red">*</font>详细地址：</label>
+								<div class="col-md-6">
+									<input id="country" type="text" name="" class="form-control" placeholder="xx区xx镇xx街道xx号"/>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								
+								<button id="load" type="button" class="btn btn-danger " >提交</button>
+							</div>
+						</form>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
+	<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+		$("#load").click(function(){
+			//获取信息
+			var name = $("#name").val();
+			var tel = $("#tel").val();
+			var province = $("#province").val();
+			var city = $("#city").val();
+			var country = $("#country").val();
+			var addr = name+","+tel+","+province+","+city+","+country;
+// 			alert("addr="+addr);
+			//输入校验
+			var flag = true;
+			var telnum = parseInt(tel);
+// 			alert("telnum="+telnum);
+			if(name.length == 0){
+				flag = false;
+				alert("收件人不能为空!");
+			}else if(tel.length == 0){
+				flag = false;
+				alert("联系方式不能为空!");
+			}else if(country.length == 0){
+				flag = false;
+				alert("详细地址不能为空!");
+			}else if(tel.length != 11){
+				flag = false;
+				alert("手机号的长度应为11位!");
+			}
+			
+			
+			
+			if(flag == true){
+				alert("成功");				
+			}
+
+			//提交
+			window.location.href="CompleteAddress!jAddress?addr="+addr;
+		});
+	</script>
+
+	<script type="text/javascript">
+		$("#province").change(function(){	//给select添加事件，当选中其中一项时触发
+			var checkText = $("#province").find("option:selected").text();	//获取select选择的文本
+			if(checkText =="福建省"){
+				$("#city").empty();	//清空第二个select项的内容
+				$("#city").append("<option value='厦门市'>厦门市</option>");	
+				$("#city").append("<option value='福州市'>福州市</option>");	
+			}else if(checkText == "广西省"){
+				$("#city").empty();	//清空第二个select项的内容
+				$("#city").append("<option value='南宁市'>南宁市</option>");	
+				$("#city").append("<option value='桂林市'>桂林市</option>");	
+			}else if(checkText == "北京市"){
+				$("#city").empty();	//清空第二个select项的内容
+				$("#city").append("<option value='北京市'>北京市</option>");	
+			}else if(checkText == "上海市"){
+				$("#city").empty();	//清空第二个select项的内容
+				$("#city").append("<option value='上海市'>上海市</option>");	
+			}else if(checkText =="广东省"){
+				$("#city").empty();	//清空第二个select项的内容
+				$("#city").append("<option value='广州市'>广州市</option>");	
+				$("#city").append("<option value='深圳市'>深圳市</option>");	
+				$("#city").append("<option value='珠海市'>珠海市</option>");	
+				$("#city").append("<option value='汕头市'>汕头市</option>");	
+				$("#city").append("<option value='汕尾市'>汕尾市</option>");	
+				$("#city").append("<option value='揭阳市'>揭阳市</option>");	
+				$("#city").append("<option value='潮州市'>潮州市</option>");	
+				$("#city").append("<option value='中山市'>中山市</option>");	
+				$("#city").append("<option value='韶关市'>韶关市</option>");	
+				$("#city").append("<option value='东莞市'>东莞市</option>");	
+				$("#city").append("<option value='惠州市'>惠州市</option>");	
+				$("#city").append("<option value='梅州市'>梅州市</option>");
+				$("#city").append("<option value='江门市'>江门市</option>");	
+				$("#city").append("<option value='湛江市'>湛江市</option>");	
+				$("#city").append("<option value='茂名市'>茂名市</option>");	
+				$("#city").append("<option value='清远市'>清远市</option>");
+				$("#city").append("<option value='肇庆市'>肇庆市</option>");
+				$("#city").append("<option value='河源市'>河源市</option>");	
+			}
+			
+		});
+
+	</script>
+	
+</body>
+</html>

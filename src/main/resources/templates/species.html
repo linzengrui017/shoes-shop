@@ -1,0 +1,55 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>商品分类</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{/css/view/index.css}">
+</head>
+<body>
+
+	<!-- 本周热款 -->
+	<div id="hot" class="container">
+		<h3><a href="index.jsp"><span class="label label-danger">商品分类</span></a></h3>
+		<div class="row">
+			<s:iterator value="#request.shoesList" status="st" var="shoes">
+				<div class="col-md-3">
+					<div class="thumbnail">
+						<a href="showShoes?shoesId=<s:property value="#shoes.shoesId"/>"><img src="<s:property value="#shoes.imageURL"/>"/></a>
+						<div class="caption">
+							<h4><s:property value="#shoes.shoesName"/></h4>
+							<p align="right" >价格：¥<font color="#ff0000"><s:property value="#shoes.price"/></font>元</p>
+						</div>
+					</div>
+				</div>
+			</s:iterator>
+			
+		</div>
+	</div>
+	<!-- 页码  -->
+	<div style="text-align:center;">
+		<ul class="pagination pagination-lg">
+			<li><a href="#">&laquo;</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<ul class="pager">
+			<li><a href="#">上一页</a></li>
+			<li><a href="#">下一页</a></li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

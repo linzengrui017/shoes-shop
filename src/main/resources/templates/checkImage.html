@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>检查验证码</title>
+<script type="text/javascript">
+	function same(){
+		loginForm.action = "login"; 
+		loginForm.submit();
+	}
+	function different(){
+		alert("验证码输入错误！");
+		location.href = "index.jsp";
+	}
+</script>
+</head>
+<body>
+	<%
+		String name = request.getParameter("name");
+		String pwd = request.getParameter("pwd");
+		
+		System.out.println("name = "+ name + "\n" + "pwd = " + pwd);
+	%>
+	
+	<form  id="loginForm" name="loginForm" method="post">
+		<input type = "hidden" id = "name" value=<%=name %> name="member.name"/>
+		<input type = "hidden" id = "pwd" value=<%=pwd %> name="member.pwd"/>
+	</form>
+	
+	<% 
+		String code = session.getAttribute("code").toString().toLowerCase();
+		String inputCode = request.getParameter("inputCode").toString().toLowerCase();
+		if(code.equals(inputCode)){
+			out.println("<script language='javascript'>same();</script>");
+		}else{
+			out.println("<script language='javascript'>different();</script>");
+		}
+	%>
+</body>
+</html>

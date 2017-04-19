@@ -1,0 +1,191 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>商品查询</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/back.css}"/>
+<style type="text/css">
+	body {
+		margin-left: 20px;
+	 	position: relative;
+	 	
+	}
+</style>
+</head>
+<body>
+	
+	<div>	<!--面包屑导航-->
+	<ol class="breadcrumb">
+		<li><a href="#">Home</a></li>
+		<li><a href="tab-pane-shoesManage.html">商品管理</a></li>
+		<li class="active">商品查询</li>
+	</ol>
+	</div>
+	<!--导航条-->
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="back_query_shoes_i">商品列表</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<ul class="nav navbar-nav">
+		        <li class="active"><a href="#panel-table-1">鞋子信息表<span class="sr-only">(current)</span></a></li>
+		        
+	      	</ul>
+	      	<form class="navbar-form navbar-left" role="search">
+	        	<div class="form-group">
+	          	<input id="txt_search" type="text" class="form-control" placeholder="Search">
+	        	</div>
+	        	<select id="occ" class="form-control">
+	        		<option value="编号">编号</option>
+	        		<option value="名称">名称</option>
+	        		<option value="品牌">品牌</option>
+	        	</select>
+	        	<button id="btn_search" type="button" class="btn btn-default">搜索</button>
+	      	</form>
+	      	
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="row">
+		<div class="col-md-9">
+			<!--鞋子信息表-->
+			<div id="panel-table-0" class="panel panel-primary">						
+		 		<div id="#shopping-list" class="panel-heading">鞋子信息表</div>
+				<table id="#shopping-table" class="table table-hover">
+					<thead>
+						<tr>
+							<th><center>编号</center></th><th><center>图片</center></th>
+							<th><center>名称</center></th><th><center>单价</center></th>
+							<th><center>折扣</center></th><th><center>品牌</center></th>
+							<th><center>类型</center></th><th><center>上架时间</center></th>
+							<th><center>状态</center></th><th><center>商品操作</center></th>	
+						</tr>
+					</thead>
+					<tbody >
+						<div th:each="shoes : ${shoesList}">
+						<tr >
+							<td style="width:80px;"><div style="margin:35px 0px 45px 20px;"><span th:text="${shoes.shoesId}"></span></div></td>
+							<td style="width:190px;margin:0px 0px 0px 10px;">
+								<img style="width:150px;height:100px;" src="${shoes.imageURL}"/>"/>
+							</td>
+							<td style="width:260px;">
+								<div style="margin:35px 0px 45px 0px;"><span th:text="${shoes.shoesName}"></span><div>
+							</td>
+							<td style="width:100px;">
+								<div style="margin:35px 0px 0px 30px;"><span th:text="${shoes.price}"></span></div>
+							</td>
+							<td style="width:100px;">
+								<div style="margin:35px 0px 0px 30px;"><span th:text="${shoes.discount}"></span></div>
+							</td>
+							<td style="width:120px;"><div style="margin:35px 20px 45px 20px;"><span th:text="${shoes.brand}"></span></div></td>
+							<td style="width:80px;"><div style="margin:35px 0px 45px 30px;"><span th:text="${shoes.speciesId}"></span></div></td>
+							<td style="width:80px;"><div style="margin:35px 0px 45px 30px;"><span th:text="${shoes.shelfTime}"></span></div></td>
+							<td style="width:80px;"><div style="margin:35px 0px 45px 30px;"><span th:text="${shoes.shoesStatus}"></span></div></td>
+							<td style="width:100px;">
+								<div style="margin:35px 0px 45px 20px;">
+									<a href="#"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;
+									<a href="#"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+								</div>
+							</td>									
+						</tr>
+						</div>
+					</tbody>
+				</table>
+
+				<!--分页-->
+<!-- 				<div style="margin:0px 0px 0px 350px;"> -->
+<!-- 					<nav> -->
+<!-- 					 	<ul class="pagination pagination-md"> -->
+<%-- 							<li><a href="#" aria-label="Previous" id="btn_shoes1_previous"><span aria-hidden="true">&laquo;</span></a></li> --%>
+<!-- 							<li><a href="#" id="btn_shoes1_1">1</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_2">2</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_3">3</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_4">4</a></li> -->
+<!-- 							<li><a href="#" id="btn_shoes1_5">5</a></li> -->
+<%-- 							<li><a href="#" id="btn_shoes1_next" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li> --%>
+<!-- 						</ul> -->
+<!-- 					</nav>	 -->
+<!-- 				</div> -->
+				
+<!-- 			<nav> -->
+<!-- 			  <ul class="pager"> -->
+<!-- 			    <li><a href="#btn_shoes_previous">上一页</a></li> -->
+<!-- 			    <li><a href="#btn_shoes_next">下一页</a></li> -->
+<!-- 			  </ul> -->
+<!-- 			</nav> -->
+
+			</div>
+		</div>
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$("#btn_orders_next").click(function(){
+// 			var tdNode = $(".orderLine").children().eq(1).find("div");
+// 			var orderItemId = tdNode.html();
+// 			window.location.href = "nextPageOrders?orderItemId="+orderItemId;
+			
+		});
+		$("#btn_orders_previous").click(function(){
+// 			var tdNode = $(".orderLine").children().eq(1).find("div");
+// 			var orderItemId = tdNode.html();
+// 			window.location.href = "previousPageOrders?orderItemId="+orderItemId;
+		});
+	</script>
+	<script type="text/javascript">
+		$("#btn_search").click(function(){
+			
+			var txt_search = $("#txt_search").val();
+			var occ = $("#occ").val();
+			var idName = "";
+			if(occ == "编号"){
+				idName = "shoesId";
+			}else if(occ == "名称"){
+				idName = "shoesName";
+			}else if(occ == "品牌"){
+				idName = "brand";
+			}
+			
+// 			alert("occ="+occ+"\n"+"idName="+idName+"\n"+"txt_search="+txt_search);
+			window.location.href="back_query_shoes_j?occ="+occ+"&idName="+idName+"&txt_search="+txt_search;
+			
+			
+// 			var sql = "";
+// 			if(txt_search == "" || txt_search == null || txt_search == "null"){
+// 				sql = "select * from Shoes where shoesStatus = '在售'";
+// 			}else if(occ == "编号"){
+// 				sql = "select * from Shoes where shoesStatus = '在售' and "+ idName + " = " + txt_search;
+// 			}else if(occ == "名称"){
+// 				sql = "select * from Shoes where shoesStatus = '在售' and "+ idName +" like '%"+ txt_search +"%'";
+// 			}else if(occ == "品牌"){
+// 				sql = "select * from Shoes where shoesStatus = '在售' and "+ idName +" like '%"+ txt_search +"%'";
+// 			}
+// 			alert("sql="+sql);
+// 			window.location.href="back_query_shoes_j?sql="+sql;
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$('body').scrollspy({ target: '#bs-example-navbar-collapse-1' });
+
+		$('[data-spy="scroll"]').each(function () {
+		  var $spy = $(this).scrollspy('refresh')
+		});
+	</script>
+
+</body>
+</html>

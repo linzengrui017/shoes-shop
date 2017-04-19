@@ -1,0 +1,136 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>个人中心</title>
+<link rel = "stylesheet" th:href="@{css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{css/view/personalCenter.css}">
+</head>
+<body>
+	<!-- 显示修改密码成功的信息 -->
+	<div th:if="sucMsg != null">
+		<script type="text/javascript">
+			var msg = "${sucMsg}";
+			alert(msg);
+		</script>
+	</div>
+	
+	<!--置顶的导航条-->
+	<nav id="top" class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	  	<div class="navbar-header" style="margin-top:20px;">
+	  		<a id="logo" class="navbar-brand" href="success.jsp">名履鞋类直营店</a>
+<!-- 	  		<a class="navbar-brand" href="#"> -->
+<!-- 	  			<img id="logo" src="images/banner/logo4.png"> -->
+<!-- 	  		</a> -->
+	  	</div>
+	   	<div class="nav navbar-nav navbar-right">
+	   		<%
+				HttpServletRequest req = ServletActionContext.getRequest();
+				HttpSession httpSession = req.getSession();
+				String name = (String)httpSession.getAttribute("name");
+			%>
+	   		<label><p id="name"><%=name %></p></label>
+	   	</div>
+	  </div>
+	</nav>
+	<!-- 窗口声明 -->
+	<div class="modal-dialog">
+		<!-- 内容声明 -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title"><strong>密码修改</strong></h4>
+			</div>
+		<div class="modal-body">
+			<div class="container-fluid">
+				<div class="row">
+					<form onsubmit="return submitForm(this)" class= "form-horizontal" action="modifyPassword!modifyPassword" method="post" namespace="/">
+						<div class="form-group">
+							<label class="col-md-3 control-label">用户账号</label>
+							<div class="col-md-6">
+								<label><span class="form-control"><%=name %></span></label>
+								<input type="hidden" name="member.name" class="form-control" value="<%=name %>" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">新的密码</label>
+							<div class="col-md-6">
+								<input type="password" name="member.pwd" class="form-control" placeholder="请输入新密码"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">确认密码</label>
+							<div class="col-md-6">
+								<input type="password" class="form-control" placeholder="请再一次输入您的密码"/>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="submit" class="btn btn-primary" value="修改"/>
+							<button class="btn btn-warning " data-dismiss="modal">取消</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+	
+
+	<script type="text/javascript" th:src="@{js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+	function submitForm(form){
+		var errorMsg = "";		
+		var tagElements = form.getElementsByTagName('input');		
+		var pwd = tagElements[1];
+		var pwd2 = tagElements[2];
+		if(pwd.value.length == 0){
+			errorMsg = "登录密码不能为空！";
+			pwd.focus();
+		}else if((pwd.value.length < 6) || (pwd.value.length >20)){
+			errorMsg = "登录密码长度必须在6~20之间，且只能为字母、数字！";
+			pwd.focus();
+		}else{
+			for(var i = 0; i < pwd.value.length; i++){
+				var LowercaseLetters = pwd.value.toLowerCase().charAt(i);
+				if((!(LowercaseLetters >= '0' && LowercaseLetters <= '9'))
+						&& (!(LowercaseLetters >='a' && LowercaseLetters <='z'))){
+					errorMsg = "登录密码长度必须在6~20之间，且只能为字母、数字！";
+					pwd.focus();
+				}
+			}
+		}
+		if(errorMsg == ""){
+			if(pwd.value != pwd2.value){
+				errorMsg = "两次密码输入不一致！";
+				pwd.focus();
+			}
+		}
+		//输出错误信息
+		if(errorMsg == ""){
+			return true;
+		}else{
+			alert(errorMsg);
+			return false;
+		}
+				
+	}
+// 		$("#modify").click(function(){
+// 			onlocation.href = "modifyPassword!modifyPassword";	
+// 		});
+		
+	</script>
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#nav a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>

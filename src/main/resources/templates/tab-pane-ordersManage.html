@@ -1,0 +1,254 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>订单管理</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel = "stylesheet" th:href="@{/css/view/back.css}">
+</head>
+<body>
+	<!--订单管理-->
+<!-- 	<div class="page-header">	页头 -->
+<%-- 		<h1>Orders Manage&nbsp;&nbsp;<small>Contianing some operation</small></h1> --%>
+<!-- 	</div> -->
+	<div>	<!--面包屑导航-->
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li class="active">订单管理</li>
+		</ol>
+	</div>
+	<!--导航条-->
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="back_show_OrdersList">订单列表</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<ul class="nav navbar-nav">
+		        <li class="active"><a href="#panel-table-1">订单表<span class="sr-only">(current)</span></a></li>
+		        
+	      	</ul>
+	      	<form class="navbar-form navbar-left" role="search">
+	        	<div class="form-group">
+	          	<input id="search_txt" type="text" class="form-control" placeholder="Search">
+	        	</div>
+	        	<select id="occ" class="form-control">
+	        		<option value="订单号">订单号</option>
+	        		<option value="子订单号">子订单号</option>
+	        		<option value="商品编号">商品编号</option>
+	        		<option value="用户编号">用户编号</option>
+	        	</select>
+	        	<button id="search_orders" type="button" class="btn btn-default">搜索</button>
+	      	</form>
+	      	<ul class="nav navbar-nav navbar-right">
+		      	<li class="dropdown">
+		          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单操作 <span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;&nbsp;订单查询</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;&nbsp;更新订单</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>&nbsp;&nbsp;删除订单</a></li>
+			        </ul>
+		        </li>
+	      	</ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+			<div id="panel-table-0" class="panel panel-primary" style="margin: 30px 30px 30px 30px;">						
+		 		<div id="#shopping-list" class="panel-heading">订单表</div>
+				<table id="#shopping-table" class="table table-hover">
+					<thead>
+						<tr>
+							<th><center>订单号</center></th><th><center>子订单</center></th>
+							<th><center>商品编号</center></th><th><center>用户编号</center></th>
+							<th><center>商品名称</center></th><th><center>颜色</center></th>
+							<th><center>尺码</center></th><th><center>价格</center></th>
+							<th><center>数量</center></th><th><center>总价</center></th>
+							<th><center>订单状态</center></th><th><center>收货状态</center></th>
+							<th><center>商品操作</center></th>	
+						</tr>
+					</thead>
+					<tbody >
+					<s:iterator value="ordersList" var="ordersViewObject">
+						<tr class="orderLine">
+							<td style="width:80px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.orderId"/></div></td>
+							<td style="width:80px;" name="orderId"><div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.orderItemId"/></div></td>
+							<td style="width:100px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.shoesId"/></div></td>
+							<td style="width:100px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.memberId"/></div></td>
+							<td style="width:260px;">
+								<div style="margin:0px 0px 0px 0px;"><s:property value="#ordersViewObject.shoesName"/><div>
+							</td>
+							<td style="width:80px;"><div style="margin:0px 0px 0px 15px;"><s:property value="#ordersViewObject.color"/></div></td>
+							<td style="width:80px;"><div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.size"/></div></td>
+							<td style="width:100px;">
+								<div style="margin:0px 0px 0px 20px;"><s:property value="#ordersViewObject.price"/></div>
+							</td>
+							<td style="width:100px;">
+								<div style="margin:0px 0px 0px 40px;"><s:property value="#ordersViewObject.nums"/></div>
+							</td>
+							<td style="width:80px;"><div style="margin:0px 20px 0px 10px;"><s:property value="#ordersViewObject.total"/></div></td>
+							<td style="width:120px;"><div style="margin:0px 0px 0px 10px;"><s:property value="#ordersViewObject.orderStatus"/></div></td>
+							<td style="width:120px;"><div style="margin:0px 0px 0px 10px;"><s:property value="#ordersViewObject.receiveStatus"/></div></td>
+							<td style="width:100px;">
+								<div style="margin:0px 0px 0px 20px;">
+									<a href="#" class="btn_edit"><span style="color:#008000" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>&nbsp;&nbsp;
+									<a href="#" class="btn_delete"><span style="color:#ff0000" class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+								</div>
+							</td>									
+						</tr>
+					</s:iterator>						
+					</tbody>
+				</table>
+				<!--分页-->
+				<div style="margin:0px 0px 0px 400px;">
+					<nav>
+					 	<ul class="pagination pagination-md">
+							<li><a href="#" aria-label="Previous" id="btn_orders_previous"><span aria-hidden="true">&laquo;</span></a></li>
+							<li><a href="#" id="btn_orders_1">1</a></li>
+							<li><a href="#" id="btn_orders_2">2</a></li>
+							<li><a href="#" id="btn_orders_3">3</a></li>
+<!-- 							<li><a href="#" id="btn_orders_4">4</a></li> -->
+<!-- 							<li><a href="#" id="btn_orders_5">5</a></li> -->
+							<li><a href="#" id="btn_orders_next" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+						</ul>
+					</nav>	
+				</div>
+			</div>
+	
+
+<!-- 	<nav> -->
+<!--   		<ul class="pager"> -->
+<!-- 			<li><a href="#">上一页</a></li> -->
+<!-- 			<li><a href="#">下一页</a></li> -->
+<!-- 		</ul> -->
+<!-- 	</nav> -->
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js"}></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js"}></script>
+	<script type="text/javascript">
+		$("#search_orders").click(function(){
+			var search_txt = $("#search_txt").val();
+			var occ = $("#occ").val();
+			var idName = "";
+			if(occ == "订单号"){
+				idName = "orderId";
+			}else if(occ == "子订单号"){
+				idName = "orderItemId";
+			}else if(occ == "商品编号"){
+				idName = "shoesId";
+			}else if(occ == "用户编号"){
+				idName = "memberId";
+			}
+			
+			var sql = "";
+			if(search_txt == "" || search_txt == null || search_txt == "null"){
+				sql = "select * from OrdersList where flag = 0";
+			}else{
+				sql = "select * from OrdersList where flag = 0 and "+ idName + " = " + search_txt;
+			}
+			window.location.href="back_query_OrdersList.action?sql="+sql;
+		});
+	</script>
+	<script type="text/javascript">
+		$("#btn_orders_1").click(function(){
+			var pageNo = 1;
+			window.location.href = "findPageOrders?pageNo="+pageNo;
+		});
+		$("#btn_orders_2").click(function(){
+			var pageNo = 2;
+			window.location.href = "findPageOrders?pageNo="+pageNo;
+		});
+		$("#btn_orders_3").click(function(){
+			var pageNo = 3;
+			window.location.href = "findPageOrders?pageNo="+pageNo;
+		});
+		$("#btn_orders_4").click(function(){
+			var pageNo = 4;
+			window.location.href = "findPageOrders?pageNo="+pageNo;
+		});
+		$("#btn_orders_5").click(function(){
+			var pageNo = 5;
+			window.location.href = "findPageOrders?pageNo="+pageNo;
+		});
+		$("#btn_orders_next").click(function(){
+			var tdNode = $(".orderLine").children().eq(1).find("div");
+			var orderItemId = tdNode.html();
+			window.location.href = "nextPageOrders?orderItemId="+orderItemId;
+			
+		});
+		$("#btn_orders_previous").click(function(){
+			var tdNode = $(".orderLine").children().eq(1).find("div");
+			var orderItemId = tdNode.html();
+			window.location.href = "previousPageOrders?orderItemId="+orderItemId;
+		});
+		
+	</script>
+	<script type="text/javascript">
+		$(".btn_edit").click(function(){
+			var trNode = $(this).parent().parent().parent();
+			var node = trNode.children().eq(1).find("div");
+			var orderItemId = node.html();
+			var newNode = trNode.children().eq(10).find("div");
+			
+			$.ajax({
+				url:"updateOrders!back_update_orders",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : {"orderItemId":orderItemId},
+				//设置请求成功时执行的回调函数
+				success:function(){
+// 					window.location.href = "tab-pane-ordersManage.jsp";
+					newNode.html('已发货');
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+		});
+		
+		$(".btn_delete").click(function(){
+			var trNode = $(this).parent().parent().parent();
+			var node = trNode.children().eq(1).find("div");
+			var orderItemId = node.html();
+
+			$.ajax({
+				url:"deleteOrders!back_delete_orders",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : {"orderItemId":orderItemId},
+				//设置请求成功时执行的回调函数
+				success:function(){
+// 					window.location.href = "tab-pane-ordersManage.jsp";
+					trNode.hide();
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+			
+		});
+	</script>
+
+</body>
+</html>

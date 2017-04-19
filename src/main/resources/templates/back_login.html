@@ -1,0 +1,142 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>后台登录页面</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/back_login.css}"/>
+</head>
+<body>
+	<!--导航条-->
+	<nav id="top" class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <!-- <img alt="Brand" src="..."> -->
+	        <label><font color="#000000;">名履鞋类直营店</font></label>
+	      </a>
+	    </div>
+	  </div>
+	</nav>
+	<!--主体-->
+	<div id="middle" >
+		<div id="black">1</div>
+		<div id="login_panel" class="panel panel-default">
+			<div class="panel-heading"><h4>后台系统登录</h4></div>
+		   	<div class="panel-body">
+					<form action="" id="login_form" class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">用户名</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="name" name="member.name" placeholder="请输入用户名">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="name" class="col-sm-4 control-label">密码</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" id="pwd" name="member.pwd" placeholder="请输入密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-7"></div>
+						<div class="col-sm-2"><button id="btn_back_login" type="button" class="btn btn-default">登录</button></div>
+						<div class="col-sm-2"><button class="btn btn-default">取消</button></div>
+						<div class="col-sm-1"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--底部-->
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container">
+	   	
+	  </div>
+	</nav>
+
+
+	
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<%-- 	<script type="text/javascript" th:src="@{/js/back_login.js}"></script>
+	<script type="text/javascript">
+		$("#btn_back_login").click(function(){
+			var errorMsg = "";
+			//验证用户名的合法性
+			if($("#name").val().length == 0){
+				
+				errorMsg = "用户名不能为空！";
+				$("#name").focus();
+				alert(errorMsg);
+				return false;
+			}else if(($("#name").val().length < 4) || ($("#name").val().length >20)){
+				errorMsg = "用户名长度必须在4~20之间，且只能为字母、数字！";
+				$("#name").focus();
+				alert(errorMsg);
+				return false;
+			}else {
+				for(var i = 0; i < $("#name").val().length; i++){
+					var LowercaseLetters = $("#name").val().toLowerCase().charAt(i);
+					if((!(LowercaseLetters >= '0' && LowercaseLetters <= '9'))
+							&& (!(LowercaseLetters >='a' && LowercaseLetters <='z'))){
+						errorMsg = "用户名长度必须在4~20之间，且只能为字母、数字！";
+						$("#name").focus();
+						alert(errorMsg);
+						return false;
+					}
+				}
+			}
+//			如果用户名不合法，不用检查密码的合法性，直接输出错误信息；如果用户名合法，再检查密码是否合法。
+			if(errorMsg == ""){
+				if($("#pwd").val().length == 0){
+					errorMsg = "密码不能为空！";
+					$("#pwd").focus();
+					alert(errorMsg);
+					return false;
+				}else if(($("#pwd").val().length < 6) || ($("#pwd").val().length >20)){
+					errorMsg = "密码长度必须在6~20之间，且只能为字母、数字！";
+					$("#pwd").focus();
+					alert(errorMsg);
+					return false;
+				}else{
+					for(var i = 0; i < $("#pwd").val().length; i++){
+						var LowercaseLetters = $("#pwd").val().toLowerCase().charAt(i);
+						if((!(LowercaseLetters >= '0' && LowercaseLetters <= '9'))
+								&& (!(LowercaseLetters >='a' && LowercaseLetters <='z'))){
+							errorMsg = "密码长度必须在6~20之间，且只能为字母、数字！";
+							$("#pwd").focus();
+							alert(errorMsg);
+							return false;
+						}
+					}
+				}
+			}
+			
+			
+			//检查用户名是否存在
+			$.ajax({
+				url:"back_login!login?member.name="+$("#name").val()+"&member.pwd="+$("#pwd").val(),
+				type:"post",
+				dataType:"json",
+				data :"{}",
+			//设置请求成功时执行的回调函数
+				success:function(){
+					//跳转页面
+					window.location.href = "back.jsp";
+					return true;
+				},
+			//设置请求失败时执行的回调函数
+				error:function(){
+					$("#name").val("");	//清空文本框的值
+					$("#pwd").val("");
+					$("#name").focus();	//让该文本框获得焦点
+					alert("该用户名还未注册或者输入的密码错误！");
+					return false;
+				}
+			});
+			
+			
+		});
+	</script>
+</body>
+</html>

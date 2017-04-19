@@ -1,0 +1,116 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>购物车页面</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- <link rel = "stylesheet" href="@{/css/view/shoes1.css}"> -->
+</head>
+<body>
+	<!-- LOGO -->	
+	<nav id="logo" class="navbar navbar-default " style="margin-bottom:0px; padding-bottom:0px;">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="success.html">名履鞋类直营店</a>
+			</div>
+		</div>
+	</nav>
+	<div style="margin:0px 100px 50px 100px; padding-top:0px;" >
+		<div class="row" style="margin:0px 0px 0px 0px; padding: 0px 0px 0px 0px;">
+			<div class="col-md-4">
+				<h4><span class="label label-default">购物车</span></h4>			
+			</div>
+		</div>
+	
+	
+	<!--商品项列表-->
+	<table class="table table-bordered table-hover">
+		<caption></caption>
+		<thead>
+			<tr>
+				<th><label><input id="checkAll" type="checkbox" ></label>鞋子图片</th>
+				<th>鞋子名称</th>
+				<th>鞋子颜色</th>
+				<th>鞋子尺码</th>
+				<th>鞋子单价</th>
+				<th>鞋子数量</th>
+				<th>商品总价</th>
+				<th>商品操作</th>	
+			</tr>
+		</thead>
+		<tbody>
+			
+			<s:iterator value="itemList"  var="items">
+			<tr>
+				<td style="width:190px;">
+					<label><input id="subBox" type="checkbox" name="subBox"></label>
+					<img style="width:150px;height:100px;" src="<s:property value="#items.imageURL"/>"/>
+				</td>
+				<td style="padding:55px 0px 45px 0px;"><s:property value="#items.shoesName"/></td>
+				<td style="padding:55px 0px 45px 0px;"><s:property value="#items.color"/></td>
+				<td style="padding:55px 0px 45px 0px;"><s:property value="#items.size"/></td>
+				<td id="price"  style="padding:55px 0px 45px 0px;"><s:property value="#items.price"/></td>
+				<td  style="padding:55px 0px 45px 0px;">
+					<input id="btn_min" type="button" name="btn_min" value="-"/>
+					<input id="txt_nums" style="width:25px; type="text" name="txt_nums" value="<s:property value="#items.nums"/>" />
+					<input id="btn_add" type="button" name="btn_add" value="+"/>
+				</td>
+				<td id="total" name="total"  style="padding:55px 0px 45px 0px;"><s:property value="#items.total"/></td>
+				<td style="padding:55px 0px 45px 10px;"><button name="btn_delete" class="btn btn-danger">删除</button>	</td>
+		
+			</tr>
+			</s:iterator>
+<%-- 			<s:if test="itemsList.size()>0"> --%>
+			<tr>
+				<td colspan="5"></td>
+				<td><p>已选商品</p><label><p id="num" name="num"></p></label>件
+					<div><input type="hidden" id="calc" class="btn btn-primary" value="统计"/></div>
+				</td>
+				<td><p>合计：</p><label><p id="totalValue" name="totalValue"></p></label>元
+					<div><input type="hidden" id="btn_sum" class="btn btn-primary" value="总价"></div>
+					<div><input type="hidden" id="find" name="find" class="btn btn-default" value="查找" /></div>
+				</td>
+				<td><button id="addToOrder" class="btn btn-success">结算</button></td>
+			</tr>
+<%-- 		</s:if> --%>
+		</tbody>
+	</table>
+	</div>
+	
+	<!-- 显示底部 -->
+	<div th:include="foot::foot"></div>
+	
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	
+	<script type="text/javascript" th:src="@{/js/shoppingCart.js}"></script>
+	<script type="text/javascript">
+		$("button[name='btn_delete']").click(function(){
+			var trNode = $(this).parent().parent();
+			var nameNode = trNode.children().eq(1);
+			var shoesName = nameNode.html();
+			
+			$.ajax({
+				url:"deleteShoppingCart!deleteShoppingCart",
+				type:"post",
+				dataType:"json",
+				traditional: true, //
+				data : {"shoesName":shoesName},
+				//设置请求成功时执行的回调函数
+				success:function(){
+// 					window.location.href = "tab-pane-ordersManage.jsp";
+					trNode.hide();
+				},
+				//设置请求失败时执行的回调函数
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 alert(XMLHttpRequest.status);
+					 alert(XMLHttpRequest.readyState);
+					 alert(textStatus);
+				}
+			});
+		});
+	</script>
+	
+</body>
+</html>

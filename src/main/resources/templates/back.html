@@ -1,0 +1,116 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>后台主页面</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/back.css}"/>
+</head>
+<body>
+	<div th:if="${session.name == null}">
+		<font color ="red">您还未登录，不能对本站进行操作，请</font>
+		<a th:href="@{back.action}" >登录</a>!
+	</div>
+    <div th:unless="${session.name == null}">
+	<!--顶部-->
+	<div>
+		<!--导航-->
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<!--左边-->
+			<div class="navbar-header">
+				<a id="logo" class="navbar-brand" href="#">名履鞋类直营店</a>
+			</div>
+			<!--右边-->
+			<ul  class="nav navbar-right top-nav">
+				<!--下拉菜单-->
+				<li class="dropdown">
+					<a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        &nbsp;&nbsp;
+                        <span th:value="${sessionScope.name}"></span>
+						<b class="caret"></b>	<!--下三角-->
+					</a>
+					
+					<!--下拉菜单内容-->
+					<ul class="dropdown-menu">
+						<li><a href="back_personalCenter.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;个人中心</a></li>
+						<li class="divider"></li>	<!--分隔线-->
+						<li><a href="back_login.html"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>&nbsp;&nbsp;退出系统</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div> 
+	
+	<!--导航：胶囊式标签页-->
+	<div id="left-tab">
+		<div  class="row">
+			<div class="col-md-2" >
+				<ul id="left-nav" class="nav nav-tabs nav-stacked">	
+<%-- 					<li class="active"><a href="#welcome"><center><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;&nbsp;欢迎页</center></a></li> --%>
+					<li class="active"><a href="#shoesManage"><center><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>&nbsp;&nbsp;商品管理</center></a></li>
+					<li ><a href="#ordersManage"><center><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp;订单管理</center></a></li>
+					<li ><a href="#userManage"><center><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;用户管理</center></a></li>
+<%-- 					<li ><a href="#calcManage"><center><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;&nbsp;数据统计</center></a></li> --%>
+<%-- 					<li ><a href="#commentManage"><center><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp;&nbsp;用户评价</center></a></li> --%>
+<%-- 					<li ><a href="#scoresManage"><center><span class="glyphicon glyphicon-yen" aria-hidden="true"></span>&nbsp;&nbsp;用户积分</center></a></li> --%>
+<%-- 					<li ><a href="#diaryManage"><center><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;&nbsp;用户日志</center></a></li> --%>
+				</ul>		
+			</div>
+			<div class="col-md-10">
+				<div class="tab-content" style="padding:10px;">
+					<!--================================ 1 ==================================-->
+<!-- 					<div class="tab-pane fade in active" id="welcome"> -->
+<!-- 						<iframe src="tab-pane-welcome.html" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe> -->
+<!-- 					</div> -->
+					<!--================================ 2 ==================================-->
+					<div class="tab-pane fade in active" id="shoesManage">
+						<iframe src="tab-pane-shoesManage.html" frameborder="0" scrolling="no" width="1520px" height="1520px"></iframe>
+					</div>
+
+					<!--================================ 3 ==================================-->
+					<div class="tab-pane fade" id="ordersManage">
+						<iframe src="back_show_OrdersList.action" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+					<!--================================ 4 ==================================-->
+					<div class="tab-pane fade" id="userManage">
+						<iframe src="back_show_usersList.action" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+					<!--================================ 5 ==================================-->
+					<div class="tab-pane fade" id="calcManage">	
+						<iframe src="tab-pane-calcManage.html" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+					<!--================================ 6 ==================================-->
+					<div class="tab-pane fade" id="commentManage">
+						<iframe src="tab-pane-commentManage.html" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+					<!--================================ 7 ==================================-->
+					<div class="tab-pane fade" id="scoresManage">
+						<iframe src="tab-pane-scoresManage.html" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+					<!--================================ 8 ==================================-->
+					<div class="tab-pane fade" id="diaryManage">
+						<iframe src="tab-pane-diaryManage.html" frameborder="0" scrolling="no" width="100%" height="1424px"></iframe>
+					</div>
+
+				</div>
+			</div>	
+		</div>
+	</div> 
+    </div>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#left-nav a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>

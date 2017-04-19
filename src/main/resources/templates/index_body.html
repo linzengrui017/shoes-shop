@@ -1,0 +1,300 @@
+﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>鞋子购物网站</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/index.css}"/>
+</head>
+<body th:fragment="index_body">
+		<!-- 导航栏 --> 
+<!-- 	<nav id="select" class="navbar navbar-default"> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-3"> -->
+<!-- 				<div class="container-fluid"> -->
+<!-- 					<ul class="nav nav-tabs nav-justified"> -->
+<!-- 						<li ><a href="#">全部商品分类</a></li>					 -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-9"> -->
+<!-- 				<ul class="nav nav-tabs nav-justified"> -->
+<!-- 					<li class="active"><a href="#">首页</a></li> -->
+<!-- 					<li><a href="#">新品上市</a></li> -->
+<!-- 					<li><a href="#">女鞋专场</a></li> -->
+<!-- 					<li><a href="#">男鞋专场</a></li> -->
+<!-- 					<li><a href="#">购物车</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</nav> -->
+	
+	<!-- 商品分类和轮播图 -->
+	<div id="type">
+		<div class="row">			
+<!-- 			<div class="col-md-2"> -->
+				<!-- 商品分类 -->				
+<!-- 				<div> -->
+<!-- 					<button class="btn btn-default" data-toggle="collapse" data-target="#content"> -->
+<!-- 						新品 -->
+<!-- 					</button> -->
+<!-- 					<div id="content"> -->
+<!-- 						<div class="well"> -->
+<!-- 							<a href="#"><font color="#000000">平底凉鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">人字拖</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">帆布鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">运动鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">板鞋</font></a>&nbsp;&nbsp;	 -->
+<!-- 						</div> -->
+<!-- 					</div>	 -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<button class="btn btn-default" data-toggle="collapse" data-target="#content2"> -->
+<!-- 						男鞋 -->
+<!-- 					</button> -->
+<!-- 					<div id="content2"> -->
+<!-- 						<div class="well"> -->
+<!-- 							<a href="showShoesBySpecies?speciesId=1"><font color="#000000">皮鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">休闲鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">帆布鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">布鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">凉鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">运动鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">板鞋</font></a>&nbsp;&nbsp;			 -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<button class="btn btn-default" data-toggle="collapse" data-target="#content3"> -->
+<!-- 						女鞋 -->
+<!-- 					</button> -->
+<!-- 					<div id="content3"> -->
+<!-- 						<div class="well"> -->
+<!-- 							<a href="#"><font color="#000000">凉鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">单鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">帆布鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">运动鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">板鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">人字拖</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">松糕鞋</font></a>&nbsp;&nbsp; -->
+<!-- 							<a href="#"><font color="#000000">凉拖</font></a>&nbsp;&nbsp;			 -->
+<!-- 						</div> -->
+<!-- 					</div>	 -->
+<!-- 				</div>		 -->
+<!-- 			</div>			 -->
+<!-- 			<div class="col-md-8"> -->
+				<!-- 轮播图 -->
+				<div id="myCarousel" class="carousel slide" style="margin: 20px 25px 0px 45px; ">
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="item active" style="background:#FFFFFF;">
+							<a href="#"><img th:src="@{/images/banner/new_banner1.jpg}"/></a>
+						</div>
+						<div class="item" style="background:#FFFFFF;">
+							<a href="#"><img th:src="@{/images/banner/new_banner2.jpg}"/></a>
+						</div>
+						<div class="item" style="background:#FFFFFF;">
+							<a href="#"><img th:src="@{/images/banner/new_banner3.jpg}"/></a>
+						</div>
+						<div class="item " style="background:#FFFFFF;">
+							<a href="#"><img th:src="@{/images/banner/new_banner4.jpg}"/></a>
+						</div>
+						
+					</div>
+					<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a href="#myCarousel" data-slide="next" class="carousel-control right">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div>
+<!-- 			</div> -->
+<!-- 			<div class="col-md-2"></div> -->
+		</div>
+	</div>
+	
+	<!-- 品牌特卖 -->
+<!-- 	<div id="brand" class="container"> -->
+ 		<!--<h3><span class="label label-default">品牌热卖</span></h3> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-6"> -->
+<!-- 				<div class="thumbnail"> -->
+<!-- 					<a href	="showShoes?shoesId=1"><img src="images/shoes/man4.png"/></a>						 -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-6"> -->
+<!-- 				<div class="thumbnail"> -->
+<!-- 					<a href	="showShoes?shoesId=2"><img src="images/shoes/man_leather_1_2.jpg"/></a>					 -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div>	 -->
+	
+	<!-- 本周热款 -->
+	<div id="hot" class="container">
+		<h3><span class="label label-danger">本周热款</span></h3>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=18"><img th:src="@{/images/shoes/man_sandals_2.jpg}"/></a>
+					<div class="caption">
+						<h4>夏季男鞋子男士板鞋韩版休闲鞋子</h4>
+						<p align="right" >价格：¥<font color="#ff0000">598</font>元</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=6"><img th:src="@{/images/shoes/man_sneaker_1.jpg}"/></a>
+					<div class="caption">
+						<h4>夏季韩版网面圆头学生跑步鞋子</h4>
+						<p align="right" >价格：¥<font color="#ff0000">298</font>元</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=16"><img th:src="@{/images/shoes/man_clothShoes_2.jpg}"/></a>
+					<div class="caption">
+						<h4>男士亚麻民族风日系透气雕花拼接布鞋</h4>
+						<p align="right" >价格：¥<font color="#ff0000">299</font>元</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=17"><img th:src="@{/images/shoes/man_casualShoes_1.jpg}"/></a>
+					<div class="caption">
+						<h4>花花公子男士休闲鞋英伦网面单鞋</h4>
+						<p align="right" >价格：¥<font color="#ff0000">506</font>元</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 1F女鞋 -->
+	<div id="woman" class="container">
+		<h3><span class="label label-warning">1F女鞋</span></h3>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=5"><img th:src="@{/images/shoes/woman_canvas_2_2.jpg}"/></a>
+				</div>				
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=24"><img th:src="@{/images/shoes/woman_sneaker_2.jpg}"/></a>
+				</div>	
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=25"><img th:src="@{/images/shoes/woman_casualShoes_1.jpg}"/></a>
+				</div>	
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=23"><img th:src="@{/images/shoes/woman_sneaker_1.jpg}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=22"><img th:src="@{/images/shoes/woman_canvas_4.jpg}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=21"><img th:src="@{/images/shoes/woman_canvas_3.jpg}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href="showShoes?shoesId=4"><img th:src="@{/static/images/shoes/woman_canvas_1_3.jpg}"/></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 2F男鞋 -->
+	<div id="man" class="container">
+		<h3><span class="label label-primary">2F男鞋</span></h3>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=26"><img th:src="@{/images/shoes/man_casualShoes_5.jpg}"/></a>
+				</div>				
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=19"><img th:src="@{/images/shoes/man_casualShoes_3.jpg}"/></a>
+				</div>							
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=7"><img th:src="@{/images/shoes/man_sandals_1.jpg}"/></a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=1"><img th:src="@{/images/shoes/man4.png}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=2"><img th:src="@{/images/shoes/man_leather_1_2.jpg}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=27"><img th:src="@{/images/shoes/man_casualShoes_6.jpg}"/></a>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="thumbnail">
+					<a href	="showShoes?shoesId=28"><img th:src="@{/images/shoes/man_casualShoes_7.jpg}"/></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$('#myCarousel').carousel({
+			//设置自动播放/1.5秒
+			interval: 1500,
+		});
+		
+// 		$('#regist').on('click', function(){
+// 			$('#myModal').modal('show');
+// 		});
+		
+		//对登录按钮使用模态框组件
+		$('#login').on('click', function(){
+			$('#myModal').modal('show');
+		});
+		$('#myModal').modal({
+			show : false,
+			backdrop: 'static'
+		});
+// 		$('#myModal').modal({
+// 			show : false,
+// 			remote : 'content.html'
+// 		});
+
+	</script>
+</body>
+</html>

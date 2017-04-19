@@ -1,0 +1,96 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>修改商品</title>
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- <link rel = "stylesheet" href="@{/css/view/back_personalCenter.css}"> -->
+</head>
+<body>
+	<div>	<!--面包屑导航-->
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="tab-pane-shoesManage.html">商品管理</a></li>
+			<li class="active">修改库存量</li>
+		</ol>
+	</div>
+	<div class="panel panel-primary" style="margin: 40px 700px 50px 300px; "  >
+	   <div class="panel-heading">修改库存量</div>
+	   <div class="panel-body" style="padding: 30px 50px 30px 30px;">
+	    	<form class="form-horizontal" role="form" action="back_updateInventory_j" >
+	    	<s:iterator value="inventories" var="inventory">
+				<div class="form-group" >
+					<label for="id" class="col-sm-5 control-label">表id</label>
+					<div class="col-sm-5">
+						<label><span class="form-control" th:text="${inventory.id}"></span></label>
+						<input type="hidden" class="form-control" id="id" th:value="${inventory.id}" name="inventory.id" >
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+				<div class="form-group">
+					<label for="shoesId" class="col-sm-5 control-label">编号</label>
+					<div class="col-sm-5">
+						<label><span class="form-control" th:text="${inventory.shoesId}"></span></label>
+						<input type="hidden" class="form-control" id="shoesId" th:value="${inventory.shoesId}" name="inventory.shoesId" >
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+				<div class="form-group">
+					<label for="colorName" class="col-sm-5 control-label">颜色</label>
+					<div class="col-sm-5">
+						<label><span class="form-control" th:text="${inventory.colorName}"></span></label>
+						<input type="hidden" class="form-control" id="colorName" th:value="${inventory.colorName}" name="inventory.colorName" >
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+				<div class="form-group">
+					<label for="sizeNum" class="col-sm-5 control-label">尺码</label>
+					<div class="col-sm-5">
+						<label><span class="form-control" th:text="inventory.sizeNum"></span></label>
+						<input type="hidden" class="form-control" id="sizeNum" th:value="${inventory.sizeNum}" name="inventory.sizeNum" >
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+				<div class="form-group">
+					<label for="inventory" class="col-sm-5 control-label">数量</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="inventory" th:value="${inventory.inventory}" name="inventory.inventory" >
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="form-group" style="margin-top:50px;">
+					<div class="col-sm-6"></div>
+					<div class="col-sm-2">
+						<button type="submit" id="btn_update" class="btn btn-danger">修改</button>
+					</div>
+					<div class="col-sm-2">
+						<button  class="btn btn-warning">取消</button>
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+			</s:iterator>
+			</form>
+	   </div>
+	</div> 
+	
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$("#btn_update").click(function(){
+			
+// 			window.location.href="back_updateInventory_j";
+		});
+	</script>
+	<script type="text/javascript">
+		
+		//标签页的切换
+		$('#two-tabs a').on('click',function(e){
+			//阻止默认行为
+			e.preventDefault();
+			$(this).tab('show');
+		});
+	</script>
+	
+</body>
+</html>
