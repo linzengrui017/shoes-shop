@@ -7,4 +7,6 @@ import java.util.ArrayList;
  */
 public interface IMemberService {
     ArrayList queryUsers();
+
+    String login(String name);
 }

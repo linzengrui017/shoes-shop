@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>登录成功</title>
-<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}">
-<link rel = "stylesheet" th:href="@{/css/view/index.css}">
+<link rel = "stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link rel = "stylesheet" th:href="@{/css/view/index.css}"/>
 </head>
 <body>
 
@@ -21,12 +21,13 @@
 				<a href="queryMyOrders!jShowOrders"><span id="" class="glyphicon glyphicon-gift"></span>&nbsp;&nbsp;我的订单</a>
 			</div>
 			<ul class="nav navbar-nav navbar-right">
-				<%
-				HttpServletRequest req = ServletActionContext.getRequest();
-				HttpSession httpSession = req.getSession();
-				String name = (String)httpSession.getAttribute("name");
-				%>
-				<li><a href="personalCenter.html"><h4><span class="label label-primary"><%= name %></span></h4></a></li>
+				<!--<%-->
+				<!--HttpServletRequest req = ServletActionContext.getRequest();-->
+				<!--HttpSession httpSession = req.getSession();-->
+				<!--String name = (String)httpSession.getAttribute("name");-->
+				<!--%>-->
+				<!--<li><a href="personalCenter.html"><h4><span class="label label-primary"><%= name %></span></h4></a></li>-->
+				<li><a href="personalCenter.html"><h4><span class="label label-primary"></span></h4></a></li>
 				<li><a href="index.html"><h4><span class="label label-default">退出</span></h4></a></li>
 			</ul>
 			

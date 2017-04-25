@@ -3,7 +3,7 @@ package com.lzr.model;
 /**
  * Created by lzr on 2017/4/16.
  */
-public class member {
+public class Member {
     private String userId;
     private String name;
     private String pwd;

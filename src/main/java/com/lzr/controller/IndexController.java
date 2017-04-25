@@ -14,8 +14,14 @@ public class IndexController {
         return "showUsers";
     }
 
-    @RequestMapping("/page")
+    @RequestMapping("/")
     public ModelAndView page(){
         return new ModelAndView("index");
     }
+
+    @RequestMapping("/success")
+    public ModelAndView success(){
+        return new ModelAndView("success");
+    }
+
 }
